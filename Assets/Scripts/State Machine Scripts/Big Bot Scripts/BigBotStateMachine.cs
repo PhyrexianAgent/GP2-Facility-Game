@@ -9,9 +9,9 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     [SerializeField] private float patrolSpeed;
     [SerializeField] private float searchingCoverSpeed;
     [SerializeField] private Transform[] patrolPoints;
-    [SerializeField] private Transform lookPoint;
+    [SerializeField] private AwareConeDetector coneDetector;
+    //[SerializeField] private Transform lookPoint;
     [SerializeField] private Transform groundPoint;
-    [SerializeField, Min(0)] private float lookRadius, lookDistance, awareLookRadius, awareLookDistance;
     [SerializeField] private ViewPane playerPane;
     [SerializeField, Min(0)] private float peerOverCoverDistance; // Distance away from cover bot will stop at when running to cover
     [SerializeField] private bool canAttackPlayer = true;
@@ -31,8 +31,6 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     }
 
     void OnDrawGizmos(){
-        DrawSpotlight(lookPoint, lookRadius, lookDistance, Color.blue);
-        DrawSpotlight(lookPoint, awareLookRadius, awareLookDistance, Color.red);
         Debug.DrawLine(groundPoint.position, groundPoint.position + groundPoint.forward * peerOverCoverDistance, Color.blue);
     }
 
@@ -41,7 +39,7 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
         LookingBehindCover searching = new LookingBehindCover(gameObject, 5f, searchingCoverSpeed);
         ShootingPlayer shooting = new ShootingPlayer(gameObject);
         HolsteringGun holstering = new HolsteringGun(gameObject);
-        EquippingGun equipping = new EquippingGun(gameObject, playerPane.transform, () => CanSeePlayer(awareLookDistance, awareLookRadius));
+        EquippingGun equipping = new EquippingGun(gameObject, playerPane.transform, () => CanSeePlayer(true));
 
         AddNode(patrolling, true);
         AddNode(searching);
@@ -49,50 +47,19 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
         AddNode(holstering);
         AddNode(equipping);
 
-        AddTransition(patrolling, equipping, new Predicate(() => CanSeePlayer(lookDistance, lookRadius) && patrolling.CanAttack));
+        AddTransition(patrolling, equipping, new Predicate(() => CanSeePlayer(false) && patrolling.CanAttack));
         AddTransition(searching, holstering, new Predicate(() => searching.DoneLooking()));
-        AddTransition(searching, shooting, new Predicate(() => CanSeePlayer(awareLookDistance, awareLookRadius)));
+        AddTransition(searching, shooting, new Predicate(() => CanSeePlayer(true)));
         AddTransition(equipping, searching, new Predicate(() => equipping.FinishedAnimation() && !equipping.CanSeePlayer()), PresetSearchDestination);
         AddTransition(equipping, shooting, new Predicate(() => equipping.CanSeePlayer() && equipping.FinishedAnimation()));
         AddTransition(shooting, patrolling, new Predicate(() => shooting.FinishedAnimation()), ForcePatrolAttackCooldown);
         AddTransition(holstering, patrolling, new Predicate(() => holstering.FinishedAnimation()));
-        AddTransition(holstering, equipping, new Predicate(() => CanSeePlayer(awareLookDistance, awareLookRadius)));
+        AddTransition(holstering, equipping, new Predicate(() => CanSeePlayer(true)));
     }
 
-    void DrawSpotlight(Transform point, float radius, float length, Color color){
-        Vector3 forward = point.position + point.forward * length;
-        Vector3 left = forward - point.right * radius;
-        Vector3 right = forward + point.right * radius;
-        Vector3 up = forward + point.up * radius;
-        Vector3 down = forward - point.up * radius;
-
-        Debug.DrawLine(point.position, left, color, 0);
-        Debug.DrawLine(point.position, right, color, 0);
-        Debug.DrawLine(point.position, up, color, 0);
-        Debug.DrawLine(point.position, down, color, 0);
-
-        Debug.DrawLine(left, up, color, 0);
-        Debug.DrawLine(up, right, color, 0);
-        Debug.DrawLine(right, down, color, 0);
-        Debug.DrawLine(down, left, color, 0);
-    }
-
-    bool CanSeePlayer(float lookDistance, float lookRadius){
-        return PlayerInSight(lookDistance, lookRadius) && playerPane.PaneVisibleToPoint(lookPoint.position);
+    bool CanSeePlayer(bool useAwareDetector){
+        return (useAwareDetector ? coneDetector.PlayerInAwareSpotlight(playerPane.transform) : coneDetector.PlayerInSpotlight(playerPane.transform)) && playerPane.PaneVisibleToPoint(coneDetector.transform.position);
     } 
-
-    bool PlayerInSight(float lookDistance, float lookRadius){ // Similar to what we did in class but with a cone so such a cone can be made easily visible
-        Vector3 forward = lookPoint.position + lookPoint.forward * lookDistance;
-        float coneDist = Vector3.Dot(playerPane.transform.position - lookPoint.position, lookPoint.forward);
-
-        if (coneDist < 0 || coneDist > lookDistance)
-            return false;
-
-        Vector3 coneDistPoint = lookPoint.position + lookPoint.forward * coneDist;
-        float coneRadius = (coneDist / lookDistance) * lookRadius;
-
-        return Vector3.Distance(coneDistPoint, playerPane.transform.position) <= coneRadius;
-    }
 
     bool PresetSearchDestination(IState to){ // Method to set looking destination before state's OnEnter method runs
         StateNode node = GetNode(to);
