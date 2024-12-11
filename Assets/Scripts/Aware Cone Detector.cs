@@ -9,7 +9,7 @@ public class AwareConeDetector : ConeDetector
 
     private void OnDrawGizmos() {
         DrawSpotlight(awareRadius, awareDistance, awareConeColor);
-        base.OnDrawGizmos();
+        base.OnDrawGizmosSelected();
     }
     public bool PlayerInAwareSpotlight(Transform playerTransform) => PlayerInSight(awareDistance, awareRadius, playerTransform);
 }
