@@ -11,11 +11,11 @@ public class EventListenerState<T> : State
         this.unityEvent = unityEvent;
     }
 
-    public override void OnEnter() {
+    public override void OnEnter() { // Note you will need to call this base method otherwise will not add method to list of methods for the unity event
         TransitionFromEvent = false;
         unityEvent.AddListener(EventCallMethod);
     } 
-    public virtual void OnExit() => unityEvent.RemoveListener(EventCallMethod);
+    public override void OnExit() => unityEvent.RemoveListener(EventCallMethod); // Note you will need to call this base method otherwise will not add method to list of methods for the unity event
 
     protected virtual void EventCallMethod(T value) => Debug.Log("calling base method");
 }
