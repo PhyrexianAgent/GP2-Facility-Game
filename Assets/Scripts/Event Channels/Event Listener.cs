@@ -21,4 +21,6 @@ public class EventListener<T> : MonoBehaviour
     public void Raise(T value){
         unityEvent?.Invoke(value);
     }
+    public UnityEvent<T> GetUnityEvent() => unityEvent;
+    public EventChannel<T> GetEventChannel() => channel;
 }
