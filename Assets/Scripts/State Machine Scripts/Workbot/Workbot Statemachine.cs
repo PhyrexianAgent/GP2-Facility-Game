@@ -6,10 +6,12 @@ using UnityEngine.AI;
 
 public class WorkbotStatemachine : StateMachine
 {
-    [SerializeField] private Transform testMovePoint;
+    [SerializeField, Min(0)] private float turnRate, lookDuration;
     private SoundListener soundListener;
     private NavMeshAgent navAgent;
-    //[SerializeField] private UnityEvent<Sound> soundEvent;
+    private Sound lastHeardSound;
+    //private Working test;
+
     void Awake(){
         soundListener = GetComponent<SoundListener>();
         navAgent = GetComponent<NavMeshAgent>();
@@ -17,18 +19,22 @@ public class WorkbotStatemachine : StateMachine
     }
     void Start()
     {
-        Working working = new Working(gameObject, soundListener.GetUnityEvent());
+        UnityEvent<Sound> unityEvent = soundListener.GetUnityEvent();
+        Working working = new Working(gameObject, unityEvent);
+        LookingTowardsSound looking = new LookingTowardsSound(gameObject, unityEvent, turnRate, lookDuration);
 
         AddNode(working, true);
+        AddNode(looking);
 
-        navAgent.SetDestination(testMovePoint.position);
+        AddTransition(working, looking, new Predicate(() => working.TransitionFromEvent), SetInitialSearchDirection);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private bool SetInitialSearchDirection(IState state){
+        StateNode node = GetNode(state);
+        LookingTowardsSound looking = (LookingTowardsSound)node.State;
+        looking.SetInitialLookPoint(lastHeardSound.Location);
+        return true;
     }
 
-    //public void HeardSound(Sound sound)
+    public void HeardSound(Sound sound) => lastHeardSound = sound;
 }
