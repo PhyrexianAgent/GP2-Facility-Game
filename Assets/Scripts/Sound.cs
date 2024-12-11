@@ -12,4 +12,6 @@ public class Sound
         Range = range;
         Strength = strength;
     }
+
+    public bool CanHearSound(Vector3 targetPos) => Vector3.Distance(targetPos, Location) <= Range;
 }
