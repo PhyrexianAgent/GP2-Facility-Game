@@ -8,7 +8,7 @@ public class ConeDetector : MonoBehaviour
     [SerializeField] private Color coneColor = Color.blue; // Does not matter for gameplay as will only change how 'cone' is seen in editor.
     // Start is called before the first frame update
 
-    protected void OnDrawGizmos() => DrawSpotlight(lookRadius, lookDistance, coneColor);
+    protected void OnDrawGizmosSelected() => DrawSpotlight(lookRadius, lookDistance, coneColor);
     protected void DrawSpotlight(float radius, float length, Color color){
         Vector3 forward = transform.position + transform.forward * length;
         Vector3 left = forward - transform.right * radius;
@@ -38,7 +38,6 @@ public class ConeDetector : MonoBehaviour
 
         Vector3 coneDistPoint = transform.position + transform.forward * coneDist;
         float coneRadius = (coneDist / lookDistance) * lookRadius;
-
         return Vector3.Distance(coneDistPoint, playerTransform.transform.position) <= coneRadius;
     }
 }
