@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class LookingTowardsSound : EventListenerState<Sound>
 {
     public bool DoneLooking {get; private set;} = false;
-    private Quaternion currentLookRotation;
     private Vector3 lookPoint;
     private float turnRate;
     private float lookDuration;
@@ -28,28 +27,36 @@ public class LookingTowardsSound : EventListenerState<Sound>
     }
 
     protected override void EventCallMethod(Sound sound){
-        currentLookRotation = Quaternion.LookRotation(sound.Location);//sound.Location;
+        //currentLookRotation = Quaternion.LookRotation(sound.Location);//sound.Location;
         lookPoint = sound.Location;
         lookingAtPoint = false;
         atEndRotation = false;
         if (lookCoroutine != null) coroutineRunner.StopCoroutine(lookCoroutine);
     }
     private void LookToLookPoint(){
-        agent.transform.rotation = Quaternion.RotateTowards(agent.transform.rotation, currentLookRotation, turnRate * Time.deltaTime);
-        if (IsLookingAtPoint()) lookCoroutine = coroutineRunner.StartCoroutine(LookDelay());
+        Vector3 diff = lookPoint - new Vector3(agent.transform.position.x, lookPoint.y, agent.transform.position.z);
+        Vector3 newDirection = Vector3.RotateTowards(agent.transform.forward, diff, turnRate * Time.deltaTime, 0.0f);
+        bool finishedRotation = agent.transform.forward == newDirection;
+        agent.transform.rotation = Quaternion.LookRotation(newDirection);
+        if (finishedRotation) lookCoroutine = coroutineRunner.StartCoroutine(LookDelay());
+        //agent.transform.rotation = Quaternion.RotateTowards(agent.transform.rotation, currentLookRotation, turnRate * Time.deltaTime);
+        //if (agent.transform.rotation == diff) lookCoroutine = coroutineRunner.StartCoroutine(LookDelay());
     }
-    private bool IsLookingAtPoint(){
-        Vector3 testPos = new Vector3(agent.transform.position.x, lookPoint.y, agent.transform.position.z); // Done to get y pos the same as look point
+    /*private bool IsLookingAtPoint(){
+        //Vector3 testPos = new Vector3(agent.transform.position.x, lookPoint.y, agent.transform.position.z); // Done to get y pos the same as look point
+        //Vector3 diff = lookPoint - new Vector3
         float dot = Vector3.Dot((lookPoint - testPos).normalized, agent.transform.forward);
-        return dot >= 0.9f;
-    }
+        return dot >= 0.98f;
+    }*/
     private IEnumerator LookDelay(){
         lookingAtPoint = true;
+        Debug.Log("Strated Looking");
         yield return new WaitForSeconds(lookDuration);
         DoneLooking = true;
+        Debug.Log("Done Looking");
     }
     public void SetInitialLookPoint(Vector3 point){
-        currentLookRotation = Quaternion.LookRotation(point);
+        //currentLookRotation = Quaternion.LookRotation(point);
         lookPoint = point;
     }
 }
