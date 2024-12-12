@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class WorkbotStatemachine : StateMachine
 {
     [SerializeField, Min(0)] private float turnRate, lookDuration;
+    [SerializeField] private Transform fleePoint;
+    [SerializeField] private ConeDetector visionCone;
     private SoundListener soundListener;
     private NavMeshAgent navAgent;
     private Sound lastHeardSound;
@@ -22,11 +24,14 @@ public class WorkbotStatemachine : StateMachine
         UnityEvent<Sound> unityEvent = soundListener.GetUnityEvent();
         Working working = new Working(gameObject, unityEvent);
         LookingTowardsSound looking = new LookingTowardsSound(gameObject, unityEvent, turnRate, lookDuration);
+        Fleeing fleeing = new Fleeing(gameObject, fleePoint.position, 5);
 
         AddNode(working, true);
         AddNode(looking);
+        AddNode(fleeing);
 
         AddTransition(working, looking, new Predicate(() => working.TransitionFromEvent), SetInitialSearchDirection);
+        AddTransition(looking, fleeing, new Predicate(() => visionCone.PlayerInSpotlight(GameManager.GetPlayerTransform())));
     }
 
     private bool SetInitialSearchDirection(IState state){

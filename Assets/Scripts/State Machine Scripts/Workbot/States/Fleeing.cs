@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Fleeing : MonoBehaviour
+public class Fleeing : State
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private Vector3 fleePoint;
+    private float fleeSpeed;
+    private NavMeshAgent navAgent;
+    public Fleeing(GameObject agent, Vector3 fleePoint, float fleeSpeed) : base(agent){
+        this.fleePoint = fleePoint;
+        this.fleeSpeed = fleeSpeed;
+        navAgent = agent.GetComponent<NavMeshAgent>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void OnEnter(){
+        navAgent.SetDestination(fleePoint);
+        navAgent.speed = fleeSpeed;
     }
 }

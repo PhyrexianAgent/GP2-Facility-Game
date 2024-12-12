@@ -20,6 +20,7 @@ public class LookingTowardsSound : EventListenerState<Sound>
     }
     public override void OnEnter(){
         base.OnEnter();
+        Debug.Log("entered");
         DoneLooking = false;
     }
     public override void Update(){
