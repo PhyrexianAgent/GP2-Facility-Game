@@ -8,7 +8,7 @@ public class TurretCamera : StateMachine
     [SerializeField] Transform[] lookPoints; // Camera will look between a bunch of points in this list (makes designing where camera looks easier)
     [SerializeField, Min(0)] float baseTurnrate, seenPlayerTurnRate, lookDuration;
     [SerializeField] private ConeDetector coneDetector;
-    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private LayerMask detectIgnoreMask;
     void Start()
     {
         InitializeStates();
@@ -30,5 +30,10 @@ public class TurretCamera : StateMachine
     }
 
     private bool CanSeePlayer() => coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform()) && PlayerNotObstructed();
-    private bool PlayerNotObstructed() => !Physics.Linecast(cameraHead.position, GameManager.GetPlayerTransform().position, playerMask);
+    private bool PlayerNotObstructed() {
+        RaycastHit hit;
+        bool hitSomething = Physics.Linecast(cameraHead.position, GameManager.GetPlayerTransform().position, out hit);
+        //Debug.DrawLine(cameraHead.position, hit.point, Color.red, 0);
+        return hitSomething && hit.collider.tag == "Player";
+    }
 }
