@@ -17,11 +17,4 @@ public class TurretCamera : StateMachine
 
         AddNode(looking, true);
     }
-
-    public void RotateCamera(Quaternion rotation){ // Will handle rotating camera head and base properly (called from states)
-        
-        //cameraBase.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
-        //cameraHead.eulerAngles = new Vector3(rotation.eulerAngles.x, 0, rotation.eulerAngles.z);
-        cameraHead.rotation = rotation;
-    }
 }

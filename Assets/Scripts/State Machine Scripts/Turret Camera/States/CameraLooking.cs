@@ -34,7 +34,7 @@ public class CameraLooking : State
     private void RotateToCurrentPoint(){
         Vector3 diff = lookPoints[currentLookIndex].position - cameraHead.position;
         Vector3 newDirection = Vector3.RotateTowards(cameraHead.forward, diff, turnRate * Time.deltaTime, 0.0f);
-        cameraController.RotateCamera(Quaternion.LookRotation(newDirection));
+        cameraHead.rotation = Quaternion.LookRotation(newDirection);
         if (Vector3.Distance(newDirection, lastLookDir) <= TOLERANCE) 
             lookingDelay = cameraController.StartCoroutine(LookAtPoint());
         lastLookDir = newDirection;
