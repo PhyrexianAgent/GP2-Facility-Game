@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraTurret : StateMachine
 {
     //[SerializeField] private Animator _animator; #using transform operations for now
-    [SerializeField] private GameObject _player;
     [SerializeField] private CameraVision _vision;
     [SerializeField] private GameObject[] _turrets;
     [SerializeField] private float _patrolAngle = 30f;
@@ -18,7 +17,6 @@ public class CameraTurret : StateMachine
 
     private void Awake()
     {
-        _player = GameObject.FindWithTag("Player");
         _vision = GetComponentInChildren<CameraVision>();
 
     }
@@ -26,13 +24,13 @@ public class CameraTurret : StateMachine
     private void Start()
     {
         GameObject cameraObject = FindDescendant(transform, "Camera");
-        var patrolState = new CameraPatrolState(_turrets, _player, cameraObject, _patrolAngle, _patrolSpeed);
-        var alertState = new CameraAlertState(_turrets, _player, cameraObject, _aimSpeed, _damage);
+        var patrolState = new CameraPatrolState(_turrets, cameraObject, _patrolAngle, _patrolSpeed);
+        var alertState = new CameraAlertState(_turrets, cameraObject, _aimSpeed, _damage);
         AddNode(patrolState, true);
         AddNode(alertState);
 
-        AddTransition(patrolState, alertState, new Predicate(() => _vision.trackableIsInSight && Vector3.Distance(_player.transform.position, transform.position) <= 10f));
-        AddTransition(alertState, patrolState, new Predicate(() => Vector3.Distance(_player.transform.position, transform.position) > 10f || !_vision.trackableIsInSight));
+        AddTransition(patrolState, alertState, new Predicate(() => _vision.trackableIsInSight && Vector3.Distance(GameManager.GetPlayerTransform().position, transform.position) <= 10f));
+        AddTransition(alertState, patrolState, new Predicate(() => Vector3.Distance(GameManager.GetPlayerTransform().position, transform.position) > 10f || !_vision.trackableIsInSight));
 
         //SetCurrentState(patrolState);
     }

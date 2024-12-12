@@ -11,7 +11,6 @@ public class TurretAttackState : State
     private Vector2 _baseVelocity = new Vector2(0f, 0f);
     private AudioSource _audioSource;
 
-    private readonly GameObject _player;
     private readonly Vector3 _angleLimit = new Vector3();
     private readonly float _speed = 3f;
 
@@ -22,7 +21,7 @@ public class TurretAttackState : State
     private float _refreshRate = 5f/60f;
     private float _refreshTimer = 0f;
 
-    public TurretAttackState(GameObject turret, GameObject player, VisionRange range, float speed, AudioSource audioSource, float damage) : base(new GameObject())
+    public TurretAttackState(GameObject turret, VisionRange range, float speed, AudioSource audioSource, float damage) : base(new GameObject())
     {
         _turret = turret;
         _turretBase = FindDescendant(_turret.transform, "Turret_BaseRotation");
@@ -33,7 +32,6 @@ public class TurretAttackState : State
         _range = range;
         _turretBase.transform.rotation = Quaternion.Euler(0f, _range.directionAngle + 90f, 0f);
 
-        _player = player;
         _angleLimit = new Vector3(_range.startingAngle, 0f, _range.endingAngle);
         _speed = speed;
         _audioSource = audioSource;
@@ -59,7 +57,7 @@ public class TurretAttackState : State
     {
         //Debug.Log("Attacking Player");
 
-        if (_player == null) return; // Ignore Update if Player hasn't been found yet
+        if (GameManager.GetPlayerTransform() == null) return; // Ignore Update if Player hasn't been found yet
 
         _refreshTimer += Time.deltaTime;
         if (_refreshTimer > _refreshRate)
@@ -74,7 +72,7 @@ public class TurretAttackState : State
 
     public void TrackTarget()
     {
-        Vector3 directionToTarget = _player.transform.position - _turretSensor.transform.position;
+        Vector3 directionToTarget = GameManager.GetPlayerTransform().position - _turretSensor.transform.position;
 
         float baseAngle = Mathf.Atan2(directionToTarget.x, directionToTarget.z) * Mathf.Rad2Deg;
         float baseOffset = Mathf.Sin(Time.time * Mathf.PI * _speed) * 3f;
@@ -141,7 +139,7 @@ public class TurretAttackState : State
         return normalizedAngle;
     }
 
-    public void CheckForPlayerHit()
+    public void CheckForPlayerHit() // You could just shoot raycast out (as you can specify distance limit) and see what tag collider has (easier way I think)
     {
         RaycastHit hit;
         int layerMask = LayerMask.GetMask("Wall") | LayerMask.GetMask("Player");
@@ -151,7 +149,7 @@ public class TurretAttackState : State
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall")) { return; }
 
-            if (hit.collider.gameObject == _player)
+            if (hit.collider.gameObject == GameManager.GetPlayerTransform().gameObject)
             {
                 Debug.Log("Deal " + _damage + " Damage!");
             }

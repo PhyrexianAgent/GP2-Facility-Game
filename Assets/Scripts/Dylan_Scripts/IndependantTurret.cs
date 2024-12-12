@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class IndependantTurret : StateMachine
 {
     //[SerializeField] private Animator _animator; #using transform operations for now
-    [SerializeField] private GameObject _player;
     [SerializeField] private TurretVision _vision;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _patrolSpeed = 1f;
@@ -19,7 +18,6 @@ public class IndependantTurret : StateMachine
 
     private void Awake()
     {
-        _player = GameObject.FindWithTag("Player");
         _vision = GetComponentInChildren<TurretVision>();
         _audioSource = GetComponent<AudioSource>();
         _range = GetComponentInChildren<VisionRange>();
@@ -28,13 +26,13 @@ public class IndependantTurret : StateMachine
 
     private void Start()
     {
-        var patrolState = new TurretPatrolState(gameObject, _player, _range, _patrolSpeed);
-        var attackState = new TurretAttackState(gameObject, _player, _range, _aimSpeed, _audioSource, _damage);
+        var patrolState = new TurretPatrolState(gameObject, _range, _patrolSpeed);
+        var attackState = new TurretAttackState(gameObject, _range, _aimSpeed, _audioSource, _damage);
         AddNode(patrolState, true);
         AddNode(attackState);
 
         AddTransition(patrolState, attackState, new Predicate(() => _vision.trackableIsInSight));
-        AddTransition(attackState, patrolState, new Predicate(() => Vector3.Distance(_player.transform.position, transform.position) > 10f || !_vision.trackableIsInSight));
+        AddTransition(attackState, patrolState, new Predicate(() => Vector3.Distance(GameManager.GetPlayerTransform().position, transform.position) > 10f || !_vision.trackableIsInSight));
 
         //SetCurrentState(patrolState);
     }

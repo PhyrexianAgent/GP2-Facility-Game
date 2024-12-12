@@ -10,7 +10,6 @@ public class CameraPatrolState : State
     private float _baseVelocity = 0f;
     private Vector2[] _turretBaseVelocity;
 
-    private readonly GameObject _player;
     private readonly float _angleLimit = 30f;
     private readonly float _speed = 1f;
 
@@ -18,7 +17,7 @@ public class CameraPatrolState : State
 
     private float currentAngle = 0f;
 
-    public CameraPatrolState(GameObject[] turrets, GameObject player, GameObject camera, float angle, float speed) : base(camera)
+    public CameraPatrolState(GameObject[] turrets, GameObject camera, float angle, float speed) : base(camera)
     {
 
         _turrets = turrets;
@@ -31,7 +30,6 @@ public class CameraPatrolState : State
         _cameraBase = FindDescendant(camera.transform, "Camera_BaseRotation");
         _cameraRange = camera.GetComponentInChildren<VisionRange>();
 
-        _player = player;
         _angleLimit = angle;
         _speed = speed;
 

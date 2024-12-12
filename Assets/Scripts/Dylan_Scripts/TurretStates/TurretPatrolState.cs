@@ -10,32 +10,21 @@ public class TurretPatrolState : State
     private readonly float _angleLimit = 30f;
     private float _baseVelocity = 0f;
 
-    private readonly GameObject _player;
     private readonly float _speed = 1f;
 
     private VisionRange _range;
 
     private float currentAngle = 0f;
 
-    public TurretPatrolState(GameObject turret, GameObject player, VisionRange range, float speed) : base(turret)
+    public TurretPatrolState(GameObject turret, VisionRange range, float speed) : base(turret)
     {
         _turret = turret;
         _turretBase = FindDescendant(_turret.transform, "Turret_BaseRotation");
 
-        _player = player;
         _speed = speed;
 
         _range = range;
         _angleLimit = _range.angle / 1.7f;
-    }
-
-    public override void OnEnter()
-    {
-        //Debug.Log("...Entering Patrol Mode");
-        //agent.speed = 4f;
-        //animator.Play(Run);
-
-        
     }
 
     public override void Update()
@@ -50,11 +39,6 @@ public class TurretPatrolState : State
             _turretBase.transform.rotation = Quaternion.Euler(0f, currentAngle, 0f);
         }
         // 
-    }
-
-    public override void OnExit()
-    {
-        //Debug.Log("Leaving patrol...");
     }
 
     GameObject FindDescendant(Transform parent, string target)

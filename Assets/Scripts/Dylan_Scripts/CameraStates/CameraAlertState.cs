@@ -11,7 +11,6 @@ public class CameraAlertState : State
     private Vector2 _baseVelocity = new Vector2(0f, 0f);
     private Vector2[] _turretBaseVelocity;
 
-    private readonly GameObject _player;
     private readonly float _speed = 3f;
 
     private VisionRange _cameraRange;
@@ -21,7 +20,7 @@ public class CameraAlertState : State
     private float _refreshRate = 5f / 60f;
     private float _refreshTimer = 0f;
 
-    public CameraAlertState(GameObject[] turrets, GameObject player, GameObject camera, float speed, float damage) : base(camera)
+    public CameraAlertState(GameObject[] turrets, GameObject camera, float speed, float damage) : base(camera)
     {
         _turrets = turrets;
         _turretBaseVelocity = new Vector2[turrets.Length];
@@ -34,7 +33,6 @@ public class CameraAlertState : State
         _cameraSensor = FindDescendant(camera.transform, "CameraSensor");
         _cameraRange = camera.GetComponentInChildren<VisionRange>();
 
-        _player = player;
         _speed = speed;
         _damage = damage;
     }
@@ -64,7 +62,7 @@ public class CameraAlertState : State
     {
         //Debug.Log("Attacking Player");
 
-        if (_player == null) return; // Ignore Update if Player hasn't been found yet
+        if (GameManager.GetPlayerTransform() == null) return; // Ignore Update if Player hasn't been found yet
 
         _refreshTimer += Time.deltaTime;
         if (_refreshTimer > _refreshRate)
@@ -79,7 +77,7 @@ public class CameraAlertState : State
 
     public void TrackTarget()
     {
-        Vector3 cameraDirectionToTarget = _player.transform.position - _cameraBase.transform.position;
+        Vector3 cameraDirectionToTarget = GameManager.GetPlayerTransform().position - _cameraBase.transform.position;
 
         float turnAngle = Mathf.Atan2(cameraDirectionToTarget.x, cameraDirectionToTarget.z) * Mathf.Rad2Deg;
         float turnOffset = Mathf.Sin(Time.time * Mathf.PI * _speed) * 3f;
@@ -104,7 +102,7 @@ public class CameraAlertState : State
             GameObject turretSensor = FindDescendant(turret.transform, "Turret_Sensor");
             VisionRange turretVision = _turrets[i].GetComponentInChildren<VisionRange>();
 
-            Vector3 directionToTarget = _player.transform.position - turretSensor.transform.position;
+            Vector3 directionToTarget = GameManager.GetPlayerTransform().position - turretSensor.transform.position;
 
             float baseAngle = Mathf.Atan2(directionToTarget.x, directionToTarget.z) * Mathf.Rad2Deg;
             float baseOffset = Mathf.Sin(Time.time * Mathf.PI * _speed) * 3f;
@@ -187,7 +185,7 @@ public class CameraAlertState : State
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall")) { return; }
 
-                if (hit.collider.gameObject == _player)
+                if (hit.collider.gameObject == GameManager.GetPlayerTransform().gameObject)
                 {
                     Debug.Log("Deal " + _damage + " Damage!");
                 }
