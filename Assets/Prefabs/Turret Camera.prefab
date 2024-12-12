@@ -295,7 +295,6 @@ GameObject:
   - component: {fileID: 6329938945843942064}
   - component: {fileID: 772453792332767750}
   - component: {fileID: 3292434285202333118}
-  - component: {fileID: 7007546978570592431}
   m_Layer: 0
   m_Name: Turret Camera
   m_TagString: Untagged
@@ -430,25 +429,6 @@ MonoBehaviour:
   seenPlayerTurnRate: 2
   lookDuration: 3
   coneDetector: {fileID: 2138462688727476829}
---- !u!114 &7007546978570592431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4904887738578476570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8817fb1a8a7251e2ea9f25bf1c7c7a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraHead: {fileID: 4636059725810976155}
-  cameraBase: {fileID: 8892534008833574953}
-  lookPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  baseTurnrate: 2
-  seenPlayerTurnRate: 2
-  lookDuration: 0
-  coneDetector: {fileID: 2138462688727476829}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 1024
