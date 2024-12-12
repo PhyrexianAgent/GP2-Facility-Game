@@ -14,7 +14,11 @@ public class TurretCamera : StateMachine
     }
     private void InitializeStates(){
         CameraLooking looking = new CameraLooking(gameObject, baseTurnrate, lookPoints, lookDuration, cameraHead);
+        CameraSeeingPlayer seeingPlayer = new CameraSeeingPlayer(gameObject, cameraHead, seenPlayerTurnRate);
 
         AddNode(looking, true);
+        AddNode(seeingPlayer);
+
+        AddTransition(looking, seeingPlayer, new Predicate(() => coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform())));
     }
 }
