@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraSeeingPlayer : MonoBehaviour
+public class CameraSeeingPlayer : State
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public CameraSeeingPlayer(GameObject agent) : base(agent){
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

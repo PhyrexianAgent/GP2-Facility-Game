@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraLostPlayer : MonoBehaviour
+public class CameraLostPlayer : State
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public CameraLostPlayer(GameObject agent) : base(agent){
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
