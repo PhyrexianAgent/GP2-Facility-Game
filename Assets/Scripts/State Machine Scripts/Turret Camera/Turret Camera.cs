@@ -6,7 +6,7 @@ public class TurretCamera : StateMachine
 {
     [SerializeField] Transform cameraHead, cameraBase;
     [SerializeField] Transform[] lookPoints; // Camera will look between a bunch of points in this list (makes designing where camera looks easier)
-    [SerializeField, Min(0)] float baseTurnrate, seenPlayerTurnRate, lookDuration;
+    [SerializeField, Min(0)] float baseTurnrate, seenPlayerTurnRate, lookDuration, lostPlayerDuration;
     [SerializeField] private ConeDetector coneDetector;
     [SerializeField] private LayerMask detectIgnoreMask;
     void Start()
@@ -16,16 +16,20 @@ public class TurretCamera : StateMachine
     private void InitializeStates(){
         CameraLooking looking = new CameraLooking(gameObject, baseTurnrate, lookPoints, lookDuration, cameraHead);
         CameraSeeingPlayer seeingPlayer = new CameraSeeingPlayer(gameObject, cameraHead, seenPlayerTurnRate);
+        CameraLostPlayer lostPlayer = new CameraLostPlayer(gameObject, lostPlayerDuration);
 
         AddNode(looking, true);
         AddNode(seeingPlayer);
+        AddNode(lostPlayer);
 
         AddTransition(looking, seeingPlayer, new Predicate(() => CanSeePlayer()));
+        AddTransition(seeingPlayer, lostPlayer, new Predicate(() => !PlayerNotObstructed()));
+        AddTransition(lostPlayer, looking, new Predicate(() => lostPlayer.FinishedDelay));
+        AddTransition(lostPlayer, seeingPlayer, new Predicate(() => PlayerNotObstructed()));
     }
     public Transform[] GetLookPoints() => lookPoints;
     public void RotateToPoint(Vector3 point){
         Vector3 diff = point - cameraHead.position;
-        //Vector3 newDirection = Vector3.RotateTowards(cameraHead.forward, diff, turnRate * Time.deltaTime, 0.0f);
         cameraHead.rotation = Quaternion.LookRotation(diff.normalized);
     }
 
