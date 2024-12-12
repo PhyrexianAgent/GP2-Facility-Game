@@ -38,7 +38,6 @@ public class ConeDetector : MonoBehaviour
 
         Vector3 coneDistPoint = transform.position + transform.forward * coneDist;
         float coneRadius = (coneDist / lookDistance) * lookRadius;
-
         return Vector3.Distance(coneDistPoint, playerTransform.transform.position) <= coneRadius;
     }
 }

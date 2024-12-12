@@ -28,7 +28,6 @@ public class LookingTowardsSound : EventListenerState<Sound>
     }
 
     protected override void EventCallMethod(Sound sound){
-        //currentLookRotation = Quaternion.LookRotation(sound.Location);//sound.Location;
         lookPoint = sound.Location;
         lookingAtPoint = false;
         atEndRotation = false;
@@ -40,15 +39,7 @@ public class LookingTowardsSound : EventListenerState<Sound>
         bool finishedRotation = agent.transform.forward == newDirection;
         agent.transform.rotation = Quaternion.LookRotation(newDirection);
         if (finishedRotation) lookCoroutine = coroutineRunner.StartCoroutine(LookDelay());
-        //agent.transform.rotation = Quaternion.RotateTowards(agent.transform.rotation, currentLookRotation, turnRate * Time.deltaTime);
-        //if (agent.transform.rotation == diff) lookCoroutine = coroutineRunner.StartCoroutine(LookDelay());
     }
-    /*private bool IsLookingAtPoint(){
-        //Vector3 testPos = new Vector3(agent.transform.position.x, lookPoint.y, agent.transform.position.z); // Done to get y pos the same as look point
-        //Vector3 diff = lookPoint - new Vector3
-        float dot = Vector3.Dot((lookPoint - testPos).normalized, agent.transform.forward);
-        return dot >= 0.98f;
-    }*/
     private IEnumerator LookDelay(){
         lookingAtPoint = true;
         Debug.Log("Strated Looking");
@@ -57,7 +48,6 @@ public class LookingTowardsSound : EventListenerState<Sound>
         Debug.Log("Done Looking");
     }
     public void SetInitialLookPoint(Vector3 point){
-        //currentLookRotation = Quaternion.LookRotation(point);
         lookPoint = point;
     }
 }
