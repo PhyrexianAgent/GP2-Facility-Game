@@ -37,12 +37,16 @@ public class PlayerControl : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private float sneakCrouchHeight = 2.75f;
     [SerializeField] private float standHeight = 4f;
+    void Awake(){
+        GameManager.SetPlayer(transform);
+        controller = GetComponent<CharacterController>();
+        mainCam = Camera.main;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
-        mainCam = Camera.main;
+
     }
 
     // Update is called once per frame
