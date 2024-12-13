@@ -42,10 +42,8 @@ public class LookingTowardsSound : EventListenerState<Sound>
     }
     private IEnumerator LookDelay(){
         lookingAtPoint = true;
-        Debug.Log("Strated Looking");
         yield return new WaitForSeconds(lookDuration);
         DoneLooking = true;
-        Debug.Log("Done Looking");
     }
     public void SetInitialLookPoint(Vector3 point){
         lookPoint = point;

@@ -8,13 +8,16 @@ public class CameraLostPlayer : State
     private float lostWaitDuration;
     private TurretCamera script;
     private Coroutine waitCoroutine;
-    public CameraLostPlayer(GameObject agent, float lostWaitDuration) : base(agent){
+    private BasicTurret[] basicTurrets;
+    public CameraLostPlayer(GameObject agent, float lostWaitDuration, BasicTurret[] basicTurrets) : base(agent){
         this.lostWaitDuration = lostWaitDuration;
         script = agent.GetComponent<TurretCamera>();
+        this.basicTurrets = basicTurrets;
     }
     public override void OnEnter(){
         FinishedDelay = false;
         waitCoroutine = script.StartCoroutine(LostPlayerDelay());
+        foreach(BasicTurret turret in basicTurrets) turret.IsActive = false;
     }
     public override void OnExit(){
         if (waitCoroutine != null) script.StopCoroutine(waitCoroutine);
