@@ -14,6 +14,7 @@ public class TurretCamera : StateMachine
     void Start()
     {
         InitializeStates();
+        foreach (AdvancedTurret turret in advancedTurrets) turret.SetControllingCamera(gameObject);
     }
     private void InitializeStates(){
         CameraLooking looking = new CameraLooking(gameObject, baseTurnrate, lookPoints, lookDuration, cameraHead, basicTurrets);

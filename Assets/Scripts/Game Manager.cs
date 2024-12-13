@@ -22,4 +22,10 @@ public class GameManager
         Vector3 dir = Vector3.RotateTowards(target.forward, diff, turnRate * Time.deltaTime, 0.0f);
         return Quaternion.LookRotation(dir);
     }
+    public static GameObject GetObjectBetweenPlayerAndTarget(Transform target){
+        RaycastHit hit;
+        Vector3 dirFromPlayerToTarget = (target.position - player.position).normalized;
+        if (!Physics.Raycast(player.position, dirFromPlayerToTarget, out hit, 500)) return null;
+        return hit.collider.gameObject;
+    }
 }
