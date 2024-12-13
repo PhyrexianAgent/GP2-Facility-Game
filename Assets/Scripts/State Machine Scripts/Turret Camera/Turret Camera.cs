@@ -16,9 +16,9 @@ public class TurretCamera : StateMachine
         InitializeStates();
     }
     private void InitializeStates(){
-        CameraLooking looking = new CameraLooking(gameObject, baseTurnrate, lookPoints, lookDuration, cameraHead);
+        CameraLooking looking = new CameraLooking(gameObject, baseTurnrate, lookPoints, lookDuration, cameraHead, basicTurrets);
         CameraSeeingPlayer seeingPlayer = new CameraSeeingPlayer(gameObject, cameraHead, seenPlayerTurnRate, basicTurrets, advancedTurrets);
-        CameraLostPlayer lostPlayer = new CameraLostPlayer(gameObject, lostPlayerDuration, basicTurrets, advancedTurrets);
+        CameraLostPlayer lostPlayer = new CameraLostPlayer(gameObject, lostPlayerDuration, advancedTurrets);
 
         AddNode(looking, true);
         AddNode(seeingPlayer);
