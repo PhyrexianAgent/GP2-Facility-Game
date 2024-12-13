@@ -32,7 +32,7 @@ public class CameraLooking : State
     public override void Update(){
         if (!looking && lookPoints.Length > 0) RotateToCurrentPoint();
     }
-    private void RotateToCurrentPoint(){
+    private void RotateToCurrentPoint(){ // Will be kept like this so old dir can be collected
         Vector3 diff = lookPoints[currentLookIndex].position - cameraHead.position;
         Vector3 newDirection = Vector3.RotateTowards(cameraHead.forward, diff, turnRate * Time.deltaTime, 0.0f);
         cameraHead.rotation = Quaternion.LookRotation(newDirection);

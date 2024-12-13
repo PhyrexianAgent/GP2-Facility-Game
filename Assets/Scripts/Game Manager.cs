@@ -17,4 +17,9 @@ public class GameManager
     public static void SetPlayer(Transform playerTrans) => player = playerTrans;
     public static Transform GetPlayerTransform() => player;
     public static Sprite GetCharacterHead(DialogSource character) => characterHeads[character];
+    public static Quaternion GetRotationToPointOverTime(Transform target, Vector3 point, float turnRate){
+        Vector3 diff = point - target.position;
+        Vector3 dir = Vector3.RotateTowards(target.forward, diff, turnRate * Time.deltaTime, 0.0f);
+        return Quaternion.LookRotation(dir);
+    }
 }

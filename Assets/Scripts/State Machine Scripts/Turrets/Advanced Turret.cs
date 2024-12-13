@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class AdvancedTurret : StateMachine
 {
+    public Vector3 CurrentTarget {private get; set;}
+    public bool ActiveFromCamera {private get; set;}
     [SerializeField] private Transform[] lookPoints;
     [SerializeField, Min(0)] private float idleTurnRate, alertedTurnRate, lookDuration;
-    [SerializeField] private Transform turretHead;
+    [SerializeField] private GameObject turretHead;
     void Start()
     {
         InitializeStates();
     }
 
     private void InitializeStates(){
-        CameraLooking idle = new CameraLooking(gameObject, idleTurnRate, lookPoints, lookDuration, turretHead);
+        CameraLooking idle = new CameraLooking(gameObject, idleTurnRate, lookPoints, lookDuration, turretHead.transform);
+        TurretActive activeFromCam = new TurretActive(gameObject, TurnToCurrentTarget);
 
         AddNode(idle, true);
+        AddNode(activeFromCam);
 
-        
+        AddTransition(idle, activeFromCam, new Predicate(() => ActiveFromCamera));
+        AddTransition(activeFromCam, idle, new Predicate(() => !ActiveFromCamera));
+    }
+    private bool RotateToAngle(Vector3 dir){
+        turretHead.transform.rotation = Quaternion.LookRotation(dir);
+        return true;
+    }
+    private Vector3 GetCurrentTarget() => CurrentTarget;
+    private bool TurnToCurrentTarget(){
+        turretHead.transform.rotation = GameManager.GetRotationToPointOverTime(turretHead.transform, CurrentTarget, alertedTurnRate);
+        return true;
     }
 }

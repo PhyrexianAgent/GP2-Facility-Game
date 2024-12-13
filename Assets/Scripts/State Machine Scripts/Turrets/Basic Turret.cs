@@ -16,7 +16,7 @@ public class BasicTurret : StateMachine
 
     private void InitializeStates(){
         TurretIdle idle = new TurretIdle(turretArm);
-        TurretActive active = new TurretActive(turretArm, TurnToDirection, GetCurrentTarget, turnRate);
+        TurretActive active = new TurretActive(turretArm, TurnToTarget);
 
         AddNode(idle, true);
         AddNode(active);
@@ -30,4 +30,9 @@ public class BasicTurret : StateMachine
         return true;
     }
     private Vector3 GetCurrentTarget() => CurrentTarget;
+
+    private bool TurnToTarget(){
+        turretArm.transform.rotation = GameManager.GetRotationToPointOverTime(turretArm.transform, CurrentTarget, turnRate);
+        return true;
+    }
 }

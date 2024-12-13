@@ -7,6 +7,7 @@ public class TurretCamera : StateMachine
     [SerializeField] Transform cameraHead, cameraBase;
     [SerializeField] Transform[] lookPoints; // Camera will look between a bunch of points in this list (makes designing where camera looks easier)
     [SerializeField] BasicTurret[] basicTurrets;
+    [SerializeField] AdvancedTurret[] advancedTurrets;
     [SerializeField, Min(0)] float baseTurnrate, seenPlayerTurnRate, lookDuration, lostPlayerDuration;
     [SerializeField] private ConeDetector coneDetector;
     [SerializeField] private LayerMask detectIgnoreMask;
@@ -16,8 +17,8 @@ public class TurretCamera : StateMachine
     }
     private void InitializeStates(){
         CameraLooking looking = new CameraLooking(gameObject, baseTurnrate, lookPoints, lookDuration, cameraHead);
-        CameraSeeingPlayer seeingPlayer = new CameraSeeingPlayer(gameObject, cameraHead, seenPlayerTurnRate, basicTurrets);
-        CameraLostPlayer lostPlayer = new CameraLostPlayer(gameObject, lostPlayerDuration, basicTurrets);
+        CameraSeeingPlayer seeingPlayer = new CameraSeeingPlayer(gameObject, cameraHead, seenPlayerTurnRate, basicTurrets, advancedTurrets);
+        CameraLostPlayer lostPlayer = new CameraLostPlayer(gameObject, lostPlayerDuration, basicTurrets, advancedTurrets);
 
         AddNode(looking, true);
         AddNode(seeingPlayer);
