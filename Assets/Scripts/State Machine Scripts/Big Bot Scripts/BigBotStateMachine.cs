@@ -17,11 +17,9 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     [SerializeField] private bool canAttackPlayer = true;
 
     private NavMeshAgent navAgent;
-    private Transform player;
     //private IState tempStateKey;
     
     void Awake(){
-        player = playerPane.transform.parent;
         instance = this;
 
     }
@@ -39,7 +37,7 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
         LookingBehindCover searching = new LookingBehindCover(gameObject, 5f, searchingCoverSpeed);
         ShootingPlayer shooting = new ShootingPlayer(gameObject);
         HolsteringGun holstering = new HolsteringGun(gameObject);
-        EquippingGun equipping = new EquippingGun(gameObject, playerPane.transform, () => CanSeePlayer(true));
+        EquippingGun equipping = new EquippingGun(gameObject, () => CanSeePlayer(true));
 
         AddNode(patrolling, true);
         AddNode(searching);
@@ -58,7 +56,7 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     }
 
     bool CanSeePlayer(bool useAwareDetector){
-        return (useAwareDetector ? coneDetector.PlayerInAwareSpotlight(playerPane.transform) : coneDetector.PlayerInSpotlight(playerPane.transform)) && playerPane.PaneVisibleToPoint(coneDetector.transform.position);
+        return (useAwareDetector ? coneDetector.PlayerInAwareSpotlight(GameManager.GetPlayerTransform()) : coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform()));// && playerPane.PaneVisibleToPoint(coneDetector.transform.position);
     } 
 
     bool PresetSearchDestination(IState to){ // Method to set looking destination before state's OnEnter method runs
@@ -85,9 +83,9 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
 
     Transform GetObstacleTransform(){ // Shoots a raycast from player towards bot, noting the first transform hit, which should be an obstacle
         RaycastHit hit;
-        Vector3 dirFromPaneToBot = groundPoint.position - playerPane.transform.position;
+        Vector3 dirFromPaneToBot = groundPoint.position - GameManager.GetPlayerTransform().position;
         dirFromPaneToBot.Normalize();
-        if (!Physics.Raycast(playerPane.transform.position, dirFromPaneToBot, out hit, 500)){
+        if (!Physics.Raycast(GameManager.GetPlayerTransform().position, dirFromPaneToBot, out hit, 500)){
             return null;
         }
         Debug.Log(hit.collider.name);
