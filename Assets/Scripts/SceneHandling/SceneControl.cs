@@ -9,8 +9,10 @@ public class SceneControl : MonoBehaviour
     private SceneFader sceneFade;
     [SerializeField] AudioSource SFX;
 
-    [SerializeField] private AudioClip levelEnd;
-    [SerializeField] private AudioClip levelBegin;
+    [SerializeField] private AudioClip levelEnd1;
+    [SerializeField] private AudioClip levelEnd2;
+    [SerializeField] private AudioClip levelBegin1;
+    [SerializeField] private AudioClip levelBegin2;
 
 
     private void Awake()
@@ -26,12 +28,17 @@ public class SceneControl : MonoBehaviour
     // Start is called before the first frame update
     private IEnumerator Start()
     {
-        SFX.PlayOneShot(levelBegin);
+        SFX.PlayOneShot(levelBegin1);
         yield return sceneFade.fadeIn(fadeDuration);
+        yield return new WaitForSeconds(0.1f);
+        SFX.PlayOneShot(levelBegin2);
     }
     private IEnumerator sceneLoader(string sceneName)
     {
-        SFX.PlayOneShot(levelEnd);
+        SFX.PlayOneShot(levelEnd1);
+        yield return new WaitForSeconds(0.3f);
+        SFX.PlayOneShot(levelEnd2);
+        yield return new WaitForSeconds(0.5f);
         yield return sceneFade.fadeOut(fadeDuration);
         yield return SceneManager.LoadSceneAsync(sceneName);
     }

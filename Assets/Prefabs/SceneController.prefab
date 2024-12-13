@@ -136,8 +136,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeDuration: 3
   SFX: {fileID: 1653135111080766754}
-  levelEnd: {fileID: 8300000, guid: 496305f261c2e414db15bb3b38cae881, type: 3}
-  levelBegin: {fileID: 8300000, guid: 496305f261c2e414db15bb3b38cae881, type: 3}
+  levelEnd1: {fileID: 8300000, guid: 07d59898982294f63ade64db833391b4, type: 3}
+  levelEnd2: {fileID: 8300000, guid: b333e18a25f794fd4855e2a203320262, type: 3}
+  levelBegin1: {fileID: 8300000, guid: 8a192f4421b84408da98ab8f393611e4, type: 3}
+  levelBegin2: {fileID: 8300000, guid: 07d59898982294f63ade64db833391b4, type: 3}
 --- !u!82 &1653135111080766754
 AudioSource:
   m_ObjectHideFlags: 0
