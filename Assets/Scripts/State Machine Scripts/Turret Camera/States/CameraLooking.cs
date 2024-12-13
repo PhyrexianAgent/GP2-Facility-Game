@@ -10,7 +10,7 @@ public class CameraLooking : State
     private Transform[] lookPoints;
     private int currentLookIndex;
     private Transform cameraHead;
-    private TurretCamera cameraController;
+    private MonoBehaviour script;
     private bool looking = false;
     private Coroutine lookingDelay;
     private Vector3 lastLookDir;
@@ -19,24 +19,25 @@ public class CameraLooking : State
         this.lookPoints = lookPoints;
         this.lookDuration = lookDuration;
         this.cameraHead = cameraHead;
-        cameraController = agent.GetComponent<TurretCamera>();
+        script = agent.GetComponent<MonoBehaviour>();
     }
     public override void OnEnter(){
         looking = false;
         currentLookIndex = GetNearestLookPointIndex();
+        if (lookPoints.Length == 0) Debug.LogWarning("Missing Lookpoints on Advanced Turret or Camera");
     }
     public override void OnExit(){
-        if (lookingDelay != null) cameraController.StopCoroutine(lookingDelay);
+        if (lookingDelay != null) script.StopCoroutine(lookingDelay);
     }
     public override void Update(){
-        if (!looking) RotateToCurrentPoint();
+        if (!looking && lookPoints.Length > 0) RotateToCurrentPoint();
     }
     private void RotateToCurrentPoint(){
         Vector3 diff = lookPoints[currentLookIndex].position - cameraHead.position;
         Vector3 newDirection = Vector3.RotateTowards(cameraHead.forward, diff, turnRate * Time.deltaTime, 0.0f);
         cameraHead.rotation = Quaternion.LookRotation(newDirection);
         if (Vector3.Distance(newDirection, lastLookDir) <= TOLERANCE) 
-            lookingDelay = cameraController.StartCoroutine(LookAtPoint());
+            lookingDelay = script.StartCoroutine(LookAtPoint());
         lastLookDir = newDirection;
     }
     private IEnumerator LookAtPoint(){

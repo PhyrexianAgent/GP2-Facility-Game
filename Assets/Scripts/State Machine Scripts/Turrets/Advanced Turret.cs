@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AdvancedTurret : MonoBehaviour
+public class AdvancedTurret : StateMachine
 {
-    // Start is called before the first frame update
+    [SerializeField] private Transform[] lookPoints;
+    [SerializeField, Min(0)] private float idleTurnRate, alertedTurnRate, lookDuration;
+    [SerializeField] private Transform turretHead;
     void Start()
     {
-        
+        InitializeStates();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void InitializeStates(){
+        CameraLooking idle = new CameraLooking(gameObject, idleTurnRate, lookPoints, lookDuration, turretHead);
+
+        AddNode(idle, true);
+
         
     }
 }
