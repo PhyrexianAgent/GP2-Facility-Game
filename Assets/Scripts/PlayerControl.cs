@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -60,7 +61,8 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -77,6 +79,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
         else if (anim.GetInteger("Speed") > 0) anim.SetInteger("Speed", 0);
+        if (Input.GetKeyUp(KeyCode.K)) EditorApplication.isPlaying = false;
         
     }
     private void SetAnimSpeed(Vector3 movement){
