@@ -25,7 +25,6 @@ public class Patrolling : State
     }
     public override void Update(){
         if (navAgent.remainingDistance <= 0.15f){
-            Debug.Log("is 0");
             AddPointIndex();
             navAgent.SetDestination(patrolPoints[currentPointIndex].position);
         }

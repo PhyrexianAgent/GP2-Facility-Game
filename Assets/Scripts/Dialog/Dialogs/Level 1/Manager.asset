@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb57d21fbe1cf66ab9ba3b861bdef5a, type: 3}
   m_Name: Manager
   m_EditorClassIdentifier: 
-  dialogs: []
+  dialogs:
+  - {fileID: 11400000, guid: 993f1fe46fec6e56db824729499e6975, type: 2}
+  - {fileID: 11400000, guid: 92e86a49c95fe48469ab0e3155e2d47d, type: 2}
+  - {fileID: 11400000, guid: 57d660741fe500552906465e00bae392, type: 2}
+  - {fileID: 11400000, guid: b10aa00937bc28260831e000561c36e0, type: 2}
+  - {fileID: 11400000, guid: fad3eb904559cf82695ff8b05f3c289b, type: 2}
+  - {fileID: 11400000, guid: c86b1203c0748879bbac825ead3479dc, type: 2}
+  - {fileID: 11400000, guid: 85f6665031b8d1397908ab87cfd604b1, type: 2}
+  - {fileID: 11400000, guid: ea91f8857825769a1a383b415be45b6f, type: 2}
