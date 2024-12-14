@@ -26,6 +26,8 @@ public class PlayerSoundEmitter : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
     void OnDrawGizmosSelected(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * runSoundSize);
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * walkSoundSize);
     }
@@ -36,16 +38,14 @@ public class PlayerSoundEmitter : MonoBehaviour
         audio.Play();
     }
     public void PlayWalkStep(){
-        Debug.Log("playing walk");
         PlaySoundFromArray(walkSounds, walkVolume);
-        //soundChannel.Invoke(new Sound(transform.position, walkSoundSize, 10));
+        soundChannel.Invoke(new Sound(transform.position, walkSoundSize, 10));
     }
     public void PlayRunStep(){
-        Debug.Log("playing run");
         PlaySoundFromArray(runSounds, runVolume);
+        soundChannel.Invoke(new Sound(transform.position, runSoundSize, 10));
     }
     public void PlaySneakStep(){
-        Debug.Log("playing sneak");
         PlaySoundFromArray(walkSounds, sneakVolume);
     }
     public void PlayNoSound(){}// => audio.Stop();
