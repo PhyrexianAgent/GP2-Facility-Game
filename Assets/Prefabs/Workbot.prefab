@@ -134,6 +134,7 @@ MonoBehaviour:
   lookDuration: 5
   fleePoint: {fileID: 0}
   visionCone: {fileID: 8276466121747037743}
+  fleeSpeed: 8
 --- !u!114 &5367248762875296430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631b349cc0f0e8b5e8e3de63e9ba1b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 4.25
-  lookDistance: 9.54
+  lookRadius: 12.79
+  lookDistance: 52.5
   coneColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1001 &6530176017255776831
 PrefabInstance:
