@@ -5396,7 +5396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2185871153396169916}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5573,6 +5573,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2890121722738763303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2152748469842456102}
+  m_Layer: 0
+  m_Name: Look Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2152748469842456102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890121722738763303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.004, z: 0.619}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1416671136576053990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3059576027172025931
 GameObject:
   m_ObjectHideFlags: 0
@@ -10479,6 +10510,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2152748469842456102}
   - {fileID: 798140079383683552}
   - {fileID: 2737368500152473506}
   - {fileID: 6645898064881153362}
@@ -15685,7 +15717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5232670097244620639}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.37399998, z: -0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20869,11 +20901,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738d31e25d64f80f68bacbfc7f91524b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookPoints: []
-  idleTurnRate: 0
-  alertedTurnRate: 0
-  lookDuration: 0
-  turretHead: {fileID: 0}
+  lookPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  idleTurnRate: 1
+  alertedTurnRate: 0.5
+  pastObstacleDelay: 0.2
+  lookDuration: 3
+  turretHead: {fileID: 3357877380030404501}
+  lookPoint: {fileID: 2152748469842456102}
 --- !u!1 &7613390973896525629
 GameObject:
   m_ObjectHideFlags: 0

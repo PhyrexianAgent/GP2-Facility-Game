@@ -28,4 +28,15 @@ public class GameManager
         if (!Physics.Raycast(player.position, dirFromPlayerToTarget, out hit, 500)) return null;
         return hit.collider.gameObject;
     }
+    public static GameObject GetObjectFromRay(Vector3 position, Vector3 direction){
+        RaycastHit hit;
+        if (!Physics.Raycast(position, direction, out hit, 500)) return null;
+        return hit.collider.gameObject;
+    }
+    public static bool PlayerInView(Vector3 position, Vector3 direction){
+        RaycastHit hit;
+        if (!Physics.Raycast(position, direction, out hit)) return false;
+        //Debug.DrawLine(position, hit.point, Color.red, 0);
+        return hit.collider.tag == "Player";
+    }
 }

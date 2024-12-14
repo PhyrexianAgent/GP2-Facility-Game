@@ -7,8 +7,9 @@ public class AdvancedTurret : StateMachine
     public Vector3 CurrentTarget {private get; set;}
     public bool ActiveFromCamera {private get; set;}
     [SerializeField] private Transform[] lookPoints;
-    [SerializeField, Min(0)] private float idleTurnRate, alertedTurnRate, lookDuration;
+    [SerializeField, Min(0)] private float idleTurnRate, alertedTurnRate, pastObstacleDelay, lookDuration;
     [SerializeField] private GameObject turretHead;
+    [SerializeField] private Transform lookPoint; // for where 'laser' will exit from 
     private GameObject controllingCamera;
     void Start()
     {
@@ -18,14 +19,21 @@ public class AdvancedTurret : StateMachine
     private void InitializeStates(){
         CameraLooking idle = new CameraLooking(gameObject, idleTurnRate, lookPoints, lookDuration, turretHead.transform);
         TurretActive activeFromCam = new TurretActive(gameObject, TurnToCurrentTarget);
-        TurretLookNearCover lookingNearCover = new TurretLookNearCover(gameObject, turretHead.transform, alertedTurnRate, GetObstacle);
+        AdvancedTurretSawPlayer sawPlayer = new AdvancedTurretSawPlayer(gameObject, turretHead, lookDuration, lookPoint);
+        //TurretLookNearCover lookingNearCover = new TurretLookNearCover(gameObject, turretHead.transform, alertedTurnRate, GetObstacle, pastObstacleDelay, lookDuration);
 
         AddNode(idle, true);
         AddNode(activeFromCam);
-        AddNode(lookingNearCover);
+        AddNode(sawPlayer);
+        //AddNode(lookingNearCover);
 
         AddTransition(idle, activeFromCam, new Predicate(() => ActiveFromCamera));
-        AddTransition(activeFromCam, lookingNearCover, new Predicate(() => !ActiveFromCamera));
+        AddTransition(activeFromCam, sawPlayer, new Predicate(() => GameManager.PlayerInView(lookPoint.position, lookPoint.forward)));
+        AddTransition(idle, sawPlayer, new Predicate(() => GameManager.PlayerInView(lookPoint.position, lookPoint.forward)));
+        AddTransition(sawPlayer, idle, new Predicate(() => sawPlayer.DoneLooking));
+
+        //AddTransition(activeFromCam, lookingNearCover, new Predicate(() => !ActiveFromCamera));
+        //AddTransition(lookingNearCover, idle, new Predicate(() => lookingNearCover.DoneLooking));
         //AddTransition
     }
     private bool RotateToAngle(Vector3 dir){

@@ -16,12 +16,13 @@ public class CameraLooking : State
     private Vector3 lastLookDir;
     private BasicTurret[] basicTurrets;
     private AdvancedTurret[] advancedTurrets;
-    public CameraLooking(GameObject agent, float turnRate, Transform[] lookPoints, float lookDuration, Transform cameraHead, BasicTurret[] basicTurrets) : base(agent){
+    public CameraLooking(GameObject agent, float turnRate, Transform[] lookPoints, float lookDuration, Transform cameraHead, BasicTurret[] basicTurrets, AdvancedTurret[] advancedTurrets) : base(agent){
         this.turnRate = turnRate;
         this.lookPoints = lookPoints;
         this.lookDuration = lookDuration;
         this.cameraHead = cameraHead;
         this.basicTurrets = basicTurrets;
+        this.advancedTurrets = advancedTurrets;
         script = agent.GetComponent<MonoBehaviour>();
     }
     public CameraLooking(GameObject agent, float turnRate, Transform[] lookPoints, float lookDuration, Transform cameraHead) : base(agent){
@@ -36,6 +37,8 @@ public class CameraLooking : State
         currentLookIndex = GetNearestLookPointIndex();
         if (basicTurrets != null)
             foreach (BasicTurret turret in basicTurrets) turret.IsActive = false;
+        if (advancedTurrets != null)
+            foreach (AdvancedTurret turret in advancedTurrets) turret.ActiveFromCamera = false;
         if (lookPoints.Length == 0) Debug.LogWarning("Missing Lookpoints on Advanced Turret or Camera");
     }
     public override void OnExit(){
