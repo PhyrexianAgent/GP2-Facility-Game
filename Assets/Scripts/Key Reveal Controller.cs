@@ -45,5 +45,5 @@ public class KeyRevealController : MonoBehaviour
             if (currentIcon != null) RemoveIcon();
         } 
     }
-    public UntiyEvent GetUnityEvent() => unityEvent;
+    public UnityEvent GetUnityEvent() => unityEvent;
 }
