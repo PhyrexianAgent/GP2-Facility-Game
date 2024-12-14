@@ -1092,6 +1092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777051950}
     m_Modifications:
+    - target: {fileID: 318588748888946886, guid: a57680777d3403843b1e6d4a5b05e5fd, type: 3}
+      propertyPath: m_Center.x
+      value: 6.17
+      objectReference: {fileID: 0}
     - target: {fileID: 5928300009178751915, guid: a57680777d3403843b1e6d4a5b05e5fd, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
@@ -2923,11 +2927,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall BayDoor (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9207851331562573600, guid: d324de115c4dff845bee7b7f166883c4, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4975399993979019661, guid: d324de115c4dff845bee7b7f166883c4, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2647211758135124163, guid: d324de115c4dff845bee7b7f166883c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798887856}
   m_SourcePrefab: {fileID: 100100000, guid: d324de115c4dff845bee7b7f166883c4, type: 3}
 --- !u!4 &422910615 stripped
 Transform:
@@ -3713,13 +3721,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2706170118700806612, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
+      propertyPath: standHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706170118700806612, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
+      propertyPath: sneakCrouchHeight
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 7655961659707875669, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: m_Name
       value: Player FP
       objectReference: {fileID: 0}
     - target: {fileID: 8992982208764961732, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9654535
+      value: 1.318
       objectReference: {fileID: 0}
     - target: {fileID: 8992982208764961732, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3727,7 +3743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992982208764961732, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.15002
+      value: 30.678
       objectReference: {fileID: 0}
     - target: {fileID: 8992982208764961732, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6447,6 +6463,7 @@ GameObject:
   - component: {fileID: 1050114310}
   - component: {fileID: 1050114309}
   - component: {fileID: 1050114308}
+  - component: {fileID: 1050114311}
   m_Layer: 0
   m_Name: OpenDoor (1)
   m_TagString: Untagged
@@ -6519,6 +6536,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1050114311
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050114307}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b47e3bba032b35441a80e6b384d61baf, type: 3}
 --- !u!1001 &1058471661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10119,6 +10158,33 @@ Transform:
   - {fileID: 2068490623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1798887849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2647211758135124163, guid: d324de115c4dff845bee7b7f166883c4, type: 3}
+  m_PrefabInstance: {fileID: 422910614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1798887856
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798887849}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 1b74ff2139ba6ea47803d0c80ee0702a, type: 3}
 --- !u!1001 &1799363522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10494,6 +10560,10 @@ PrefabInstance:
       propertyPath: lookPoints.Array.data[2]
       value: 
       objectReference: {fileID: 469946427}
+    - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
+      propertyPath: advancedTurrets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: basicTurrets.Array.data[0]
       value: 
@@ -11389,6 +11459,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1486809868}
     - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
+      propertyPath: advancedTurrets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: basicTurrets.Array.data[0]
       value: 
       objectReference: {fileID: 100724821}
@@ -11549,6 +11623,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777051950}
     m_Modifications:
+    - target: {fileID: 1325675181631285722, guid: a57680777d3403843b1e6d4a5b05e5fd, type: 3}
+      propertyPath: m_Center.x
+      value: -6.51
+      objectReference: {fileID: 0}
     - target: {fileID: 5928300009178751915, guid: a57680777d3403843b1e6d4a5b05e5fd, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
