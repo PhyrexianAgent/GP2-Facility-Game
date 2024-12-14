@@ -43,6 +43,7 @@ public class WorkbotStatemachine : StateMachine
 
     public void HeardSound(Sound sound) => lastHeardSound = sound;
     public void KeyPressed(){
-        Debug.Log("pressed");
+        GameManager.CollectWorkBot();
+        Destroy(gameObject);
     }
 }

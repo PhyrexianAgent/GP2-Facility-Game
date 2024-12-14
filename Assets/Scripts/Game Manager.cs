@@ -12,6 +12,7 @@ public class GameManager
     public static bool PauseInput;
     public static GameDialogController CurrentDialogGUI;
     public static Transform PlayerInterface;
+    public static int WorkbotsCollectedCount {get; private set;}
     private static Transform player;
     private static ViewPane playerPane;
     private static Dictionary<DialogSource, Sprite> characterHeads = new Dictionary<DialogSource, Sprite>();
@@ -45,4 +46,5 @@ public class GameManager
         if (playerPane == null) return false;
         return playerPane.PaneVisibleToPoint(position);
     }
+    public static int CollectWorkBot() => WorkbotsCollectedCount++;
 }

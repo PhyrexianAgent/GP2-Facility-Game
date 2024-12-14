@@ -28,6 +28,7 @@ public class KeyRevealController : MonoBehaviour
     }
     void OnDestroy(){
         keyPressedEvent.RemoveAllListeners();
+        if (currentIcon != null) RemoveIcon();
     }
     private void RemoveIcon(){
         Destroy(currentIcon);
