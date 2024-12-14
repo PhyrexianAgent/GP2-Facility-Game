@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d95ded98ffae5dd86c8286d91cea7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretArm: {fileID: 282010633690016834}
+  turretArm: {fileID: 7412912108556089131}
   turretBase: {fileID: 6403416628746298687}
   turnRate: 1
 --- !u!1 &437909512517046094
@@ -20125,8 +20125,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8327973104808547964}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.87600076, y: 1.3899999, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.3899999, z: 0.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20136,7 +20136,7 @@ Transform:
   - {fileID: 8271068360988687292}
   - {fileID: 7890548320439414045}
   m_Father: {fileID: 67453197791228669}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &4408287147149091788
 MeshFilter:
   m_ObjectHideFlags: 0
