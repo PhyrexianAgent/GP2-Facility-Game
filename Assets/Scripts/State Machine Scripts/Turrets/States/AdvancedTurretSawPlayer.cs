@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class AdvancedTurretSawPlayer : State
 {
@@ -10,11 +11,24 @@ public class AdvancedTurretSawPlayer : State
     private Coroutine lookWait;
     private MonoBehaviour script;
     private Transform lookPoint;
-    public AdvancedTurretSawPlayer(GameObject agent, GameObject turretHead, float lookDuration, Transform lookPoint) : base(agent) {
+    private AudioSource _audio;
+    public AdvancedTurretSawPlayer(GameObject agent, GameObject turretHead, float lookDuration, Transform lookPoint, AudioSource audio) : base(agent) {
         this.turretHead = turretHead;
         this.lookDuration = lookDuration;
         this.lookPoint = lookPoint;
         script = agent.GetComponent<MonoBehaviour>();
+        _audio = audio;
+    }
+    public override void OnEnter()
+    {
+        GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
+        effect.SetActive(true);
+
+        if (!_audio.isPlaying)
+        {
+            _audio.time = _audio.clip.length * 0.15f;
+            _audio.Play();
+        }
     }
     public override void Update(){
         if (lookWait == null && !DoneLooking){
@@ -24,6 +38,15 @@ public class AdvancedTurretSawPlayer : State
         else if (!DoneLooking && GameManager.PlayerInView(lookPoint.position)) script.StopCoroutine(lookWait);
     }
     public override void OnExit(){
+
+        GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
+        effect.SetActive(false);
+
+        if (_audio.isPlaying)
+        {
+            _audio.Stop();
+        }
+
         DoneLooking = false;
         if (lookWait != null) script.StopCoroutine(lookWait);
     }
@@ -35,5 +58,26 @@ public class AdvancedTurretSawPlayer : State
     private IEnumerator LookWait(){
         yield return new WaitForSeconds(lookDuration);
         DoneLooking = true;
+    }
+
+    GameObject FindDescendant(Transform parent, string target)
+    {
+        // Check if current descendant matches
+        if (parent.gameObject.name == target)
+        {
+            return parent.gameObject;
+        }
+
+        // Search through all descendants
+        foreach (Transform child in parent)
+        {
+            GameObject found = FindDescendant(child, target);
+            if (found != null)
+            {
+                return found;
+            }
+        }
+
+        return null;
     }
 }

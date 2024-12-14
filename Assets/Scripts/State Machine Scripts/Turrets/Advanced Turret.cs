@@ -19,7 +19,7 @@ public class AdvancedTurret : StateMachine
     private void InitializeStates(){
         CameraLooking idle = new CameraLooking(gameObject, idleTurnRate, lookPoints, lookDuration, turretHead.transform);
         TurretActive activeFromCam = new TurretActive(gameObject, TurnToCurrentTarget);
-        AdvancedTurretSawPlayer sawPlayer = new AdvancedTurretSawPlayer(gameObject, turretHead, lookDuration, lookPoint);
+        AdvancedTurretSawPlayer sawPlayer = new AdvancedTurretSawPlayer(gameObject, turretHead, lookDuration, lookPoint, GetComponent<AudioSource>());
 
         AddNode(idle, true);
         AddNode(activeFromCam);

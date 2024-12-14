@@ -3746,6 +3746,14 @@ PrefabInstance:
       propertyPath: fleePoint
       value: 
       objectReference: {fileID: 1606408193}
+    - target: {fileID: 8276466121747037743, guid: 95a641ee53b418b3c8b2d04cc41a5bfe, type: 3}
+      propertyPath: lookRadius
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276466121747037743, guid: 95a641ee53b418b3c8b2d04cc41a5bfe, type: 3}
+      propertyPath: lookDistance
+      value: 10.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4299,6 +4307,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
+      propertyPath: basicTurrets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: lookPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1390768448}
@@ -4313,6 +4325,10 @@ PrefabInstance:
     - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: lookPoints.Array.data[3]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
+      propertyPath: advancedTurrets.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4904887738578476570, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: m_Name
@@ -4610,7 +4626,7 @@ Transform:
   m_GameObject: {fileID: 1606408192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.15, y: 8.71, z: -7.497}
+  m_LocalPosition: {x: -36.546, y: 3.433, z: -1.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5355,6 +5371,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1129039425}
     - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
+      propertyPath: advancedTurrets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: basicTurrets.Array.data[0]
       value: 
       objectReference: {fileID: 1731333565}
@@ -5652,7 +5672,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2706170118700806612, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: standHeight
-      value: 1
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2706170118700806612, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: sneakCrouchHeight
@@ -6219,6 +6239,10 @@ PrefabInstance:
       propertyPath: lookPoints.Array.data[2]
       value: 
       objectReference: {fileID: 650004058}
+    - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
+      propertyPath: advancedTurrets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3292434285202333118, guid: 236d898b7902dd1b08b63de58a1353f4, type: 3}
       propertyPath: basicTurrets.Array.data[0]
       value: 
