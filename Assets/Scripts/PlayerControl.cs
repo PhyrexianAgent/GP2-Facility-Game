@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
 
         controller.SimpleMove(move);
         isRunning = Input.GetKey(runKey) && (move.magnitude !=0) ? true : false;
-        Debug.Log(move.magnitude);
+        //Debug.Log(move.magnitude);
     }
     private void rotateHandler()
     {

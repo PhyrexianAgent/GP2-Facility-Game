@@ -17,4 +17,26 @@ public class GameManager
     public static void SetPlayer(Transform playerTrans) => player = playerTrans;
     public static Transform GetPlayerTransform() => player;
     public static Sprite GetCharacterHead(DialogSource character) => characterHeads[character];
+    public static Quaternion GetRotationToPointOverTime(Transform target, Vector3 point, float turnRate){
+        Vector3 diff = point - target.position;
+        Vector3 dir = Vector3.RotateTowards(target.forward, diff, turnRate * Time.deltaTime, 0.0f);
+        return Quaternion.LookRotation(dir);
+    }
+    public static GameObject GetObjectBetweenPlayerAndTarget(Transform target){
+        RaycastHit hit;
+        Vector3 dirFromPlayerToTarget = (target.position - player.position).normalized;
+        if (!Physics.Raycast(player.position, dirFromPlayerToTarget, out hit, 500)) return null;
+        return hit.collider.gameObject;
+    }
+    public static GameObject GetObjectFromRay(Vector3 position, Vector3 direction){
+        RaycastHit hit;
+        if (!Physics.Raycast(position, direction, out hit, 500)) return null;
+        return hit.collider.gameObject;
+    }
+    public static bool PlayerInView(Vector3 position, Vector3 direction){
+        RaycastHit hit;
+        if (!Physics.Raycast(position, direction, out hit)) return false;
+        //Debug.DrawLine(position, hit.point, Color.red, 0);
+        return hit.collider.tag == "Player";
+    }
 }

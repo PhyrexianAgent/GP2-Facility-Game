@@ -7,14 +7,17 @@ public class CameraSeeingPlayer : State
     private Transform cameraHead;
     private float turnRate;
     private BasicTurret[] basicTurrets;
+    private AdvancedTurret[] advancedTurrets;
 
-    public CameraSeeingPlayer(GameObject agent, Transform cameraHead, float turnRate, BasicTurret[] basicTurrets) : base(agent){
+    public CameraSeeingPlayer(GameObject agent, Transform cameraHead, float turnRate, BasicTurret[] basicTurrets, AdvancedTurret[] advancedTurrets) : base(agent){
         this.cameraHead = cameraHead;
         this.turnRate = turnRate;
         this.basicTurrets = basicTurrets;
+        this.advancedTurrets = advancedTurrets;
     }
     public override void OnEnter(){
         foreach(BasicTurret turret in basicTurrets) turret.IsActive = true;
+        foreach(AdvancedTurret turret in advancedTurrets) turret.ActiveFromCamera = true;
     }
     public override void Update(){
         RotateToPlayer();
@@ -26,6 +29,8 @@ public class CameraSeeingPlayer : State
         cameraHead.rotation = Quaternion.LookRotation(newDirection);
     }
     private void SetTurretsTarget(){
-        foreach(BasicTurret turret in basicTurrets) turret.CurrentTarget = GameManager.GetPlayerTransform().position;
+        Vector3 playerPos = GameManager.GetPlayerTransform().position;
+        foreach(BasicTurret turret in basicTurrets) turret.CurrentTarget = playerPos;
+        foreach(AdvancedTurret turret in advancedTurrets) turret.CurrentTarget = playerPos;
     }
 }
