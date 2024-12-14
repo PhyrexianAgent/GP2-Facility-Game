@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ViewPane : MonoBehaviour // Is the class used to see if player is hidden by cover, but will say not if player is only partially hidden
 {
-    [SerializeField] private float width, height;
+    [SerializeField, Min(0)] private float width, height;
     [SerializeField] private float gizmosDistanceFromObject; // Only matters for easier viewing in editor and meaningless when game runs.
 
     public bool PaneVisibleToPoint(Vector3 point){ // Will shoot 4 raycasts to point, with returning true if any contact nothing
@@ -24,7 +24,7 @@ public class ViewPane : MonoBehaviour // Is the class used to see if player is h
         return false;
     }
 
-    void OnDrawGizmos(){
+    void OnDrawGizmosSelected(){
         Vector3 frontPos = transform.forward * gizmosDistanceFromObject + transform.position;
         Vector3 leftTopCorner = frontPos - transform.right * width / 2 + transform.up * height / 2;
         Vector3 leftBottomCorner = frontPos - transform.right * width / 2 - transform.up * height / 2;

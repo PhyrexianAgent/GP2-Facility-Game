@@ -20,21 +20,15 @@ public class AdvancedTurret : StateMachine
         CameraLooking idle = new CameraLooking(gameObject, idleTurnRate, lookPoints, lookDuration, turretHead.transform);
         TurretActive activeFromCam = new TurretActive(gameObject, TurnToCurrentTarget);
         AdvancedTurretSawPlayer sawPlayer = new AdvancedTurretSawPlayer(gameObject, turretHead, lookDuration, lookPoint);
-        //TurretLookNearCover lookingNearCover = new TurretLookNearCover(gameObject, turretHead.transform, alertedTurnRate, GetObstacle, pastObstacleDelay, lookDuration);
 
         AddNode(idle, true);
         AddNode(activeFromCam);
         AddNode(sawPlayer);
-        //AddNode(lookingNearCover);
 
         AddTransition(idle, activeFromCam, new Predicate(() => ActiveFromCamera));
         AddTransition(activeFromCam, sawPlayer, new Predicate(() => GameManager.PlayerInView(lookPoint.position, lookPoint.forward)));
         AddTransition(idle, sawPlayer, new Predicate(() => GameManager.PlayerInView(lookPoint.position, lookPoint.forward)));
         AddTransition(sawPlayer, idle, new Predicate(() => sawPlayer.DoneLooking));
-
-        //AddTransition(activeFromCam, lookingNearCover, new Predicate(() => !ActiveFromCamera));
-        //AddTransition(lookingNearCover, idle, new Predicate(() => lookingNearCover.DoneLooking));
-        //AddTransition
     }
     private bool RotateToAngle(Vector3 dir){
         turretHead.transform.rotation = Quaternion.LookRotation(dir);

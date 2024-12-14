@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 8992982208764961732}
   - component: {fileID: 1872830830397166740}
   - component: {fileID: 2706170118700806612}
+  - component: {fileID: 9070267821885066984}
   m_Layer: 0
   m_Name: Player FP
   m_TagString: Player
@@ -221,3 +222,18 @@ MonoBehaviour:
   sneakKey: 306
   sneakCrouchHeight: 2.75
   standHeight: 4
+--- !u!114 &9070267821885066984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655961659707875669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a5130820df94a71b034f075ec00a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 2.81
+  height: 2.67
+  gizmosDistanceFromObject: 1
