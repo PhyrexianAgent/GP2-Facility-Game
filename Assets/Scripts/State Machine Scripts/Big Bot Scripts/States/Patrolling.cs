@@ -24,7 +24,8 @@ public class Patrolling : State
         animator.Play(WALK_ANIMATION, 0);
     }
     public override void Update(){
-        if (navAgent.remainingDistance == 0){
+        if (navAgent.remainingDistance <= 0.15f){
+            Debug.Log("is 0");
             AddPointIndex();
             navAgent.SetDestination(patrolPoints[currentPointIndex].position);
         }
