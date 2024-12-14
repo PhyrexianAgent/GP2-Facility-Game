@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    enum MoveSpeed{
+        idle,
+        walk,
+        run,
+        sneak
+    }
     [Header("Movement")]
     [SerializeField] private float speed = 4f;
     [SerializeField] private float runSneakMultiplier = 1.5f;
@@ -42,6 +48,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float standHeight = 4f;
 
     private Animator anim;
+    private MoveSpeed currentSpeedType;
     void Awake(){
         GameManager.SetPlayer(transform);
         GameManager.SetPlayerPane(playerPane);
@@ -73,7 +80,34 @@ public class PlayerControl : MonoBehaviour
         
     }
     private void SetAnimSpeed(Vector3 movement){
-        anim.SetInteger("Speed", movement.magnitude > 0 ? 1 : 0);
+        MoveSpeed value = MoveSpeed.idle;
+        if (movement.magnitude > 0){
+            if (Input.GetKey(runKey) && stam > 0)
+                value = MoveSpeed.run;
+            else if (Input.GetKey(sneakKey)){
+                value = MoveSpeed.sneak;
+            }
+            else
+                value = MoveSpeed.walk;
+        }
+        if (currentSpeedType != value) SetAnimationFromSpeedType(value);
+    }
+    private void SetAnimationFromSpeedType(MoveSpeed speedType){
+        currentSpeedType = speedType;
+        switch(speedType){
+            case MoveSpeed.idle:
+                anim.Play("Idle");
+                break;
+            case MoveSpeed.walk:
+                anim.Play("Player Walk");
+                break;
+            case MoveSpeed.sneak:
+                anim.Play("Player Sneak");
+                break;
+            case MoveSpeed.run:
+                anim.Play("Player Run");
+                break;
+        }
     }
     private void moveHandler()
     {

@@ -8,8 +8,17 @@ public class PlayerSoundEmitter : MonoBehaviour
 
     [Header("Walking")]
     [SerializeField] private AudioClip[] walkSounds;
-    [SerializeField, Min(0)] private float walkSoundSize;
-    
+    [SerializeField] private float walkSoundSize;
+    [SerializeField, Range(0, 2)] private float walkVolume = 1;
+
+    [Header("Running")]
+    [SerializeField] private AudioClip[] runSounds;
+    [SerializeField] private float runSoundSize;
+    [SerializeField, Range(0, 2)] private float runVolume = 1;
+
+    [Header("Sneaking")]
+    [SerializeField] private float sneakSoundSize;
+    [SerializeField, Range(0, 2)] private float sneakVolume = 0.6f;
 
 
     private AudioSource audio;
@@ -20,11 +29,24 @@ public class PlayerSoundEmitter : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * walkSoundSize);
     }
-    public void PlayWalkStep(){
+    private void PlaySoundFromArray(AudioClip[] sounds, float volume){
+        audio.volume = volume;
         audio.Stop();
-        audio.clip = walkSounds[Random.Range(0, walkSounds.Length)];
+        audio.clip = sounds[Random.Range(0, sounds.Length)];
         audio.Play();
+    }
+    public void PlayWalkStep(){
+        Debug.Log("playing walk");
+        PlaySoundFromArray(walkSounds, walkVolume);
         //soundChannel.Invoke(new Sound(transform.position, walkSoundSize, 10));
     }
-    public void PlayNoSound() => audio.Stop();
+    public void PlayRunStep(){
+        Debug.Log("playing run");
+        PlaySoundFromArray(runSounds, runVolume);
+    }
+    public void PlaySneakStep(){
+        Debug.Log("playing sneak");
+        PlaySoundFromArray(walkSounds, sneakVolume);
+    }
+    public void PlayNoSound(){}// => audio.Stop();
 }
