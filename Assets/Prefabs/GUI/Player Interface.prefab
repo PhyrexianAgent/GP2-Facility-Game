@@ -427,6 +427,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a936d3272ee757b4e9052d15c05c2179, type: 3}
+    - target: {fileID: 4365125150646610590, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}
+      propertyPath: dialogGroup
+      value: 
+      objectReference: {fileID: 2632074693395298951}
     - target: {fileID: 4760711617295297588, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -463,8 +467,28 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 392513005104419189, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}
       insertIndex: 2
       addedObject: {fileID: 6553533605616883733}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1463361680622834444, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2632074693395298951}
   m_SourcePrefab: {fileID: 100100000, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}
+--- !u!1 &5437588782324827359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1463361680622834444, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}
+  m_PrefabInstance: {fileID: 6861468786125412307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &2632074693395298951
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437588782324827359}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &6506199522167211686 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 392513005104419189, guid: 12edd3c45247c99c78c4dab35055fb58, type: 3}

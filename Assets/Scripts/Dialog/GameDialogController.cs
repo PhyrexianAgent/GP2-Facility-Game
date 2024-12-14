@@ -9,6 +9,7 @@ public class GameDialogController : MonoBehaviour
     [SerializeField] private DialogTextController textController;
     [SerializeField] private Image characterIconBack;
     [SerializeField] private Image characterIcon;
+    [SerializeField] private CanvasGroup dialogGroup;
 
     private DialogManager currentManager;
     private bool finishedCurrentDialog = false;
@@ -67,11 +68,12 @@ public class GameDialogController : MonoBehaviour
         
     }
     private void SetVisible(bool visible){
-        dialogBack.enabled = visible;
-        textController.SetTextVisibility(visible);
+        dialogGroup.alpha = visible ? 1 : 0;
+        //dialogBack.enabled = visible;
+        //textController.SetTextVisibility(visible);
         GameManager.PauseInput = visible;
-        Debug.Log(visible);
-        SetPortraitVisible(visible);
+        //Debug.Log(visible);
+        //SetPortraitVisible(visible);
     }
     private void SetPortraitVisible(bool visible){
         characterIcon.enabled = visible;
