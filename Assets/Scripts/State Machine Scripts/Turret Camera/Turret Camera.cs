@@ -26,9 +26,9 @@ public class TurretCamera : StateMachine
         AddNode(lostPlayer);
 
         AddTransition(looking, seeingPlayer, new Predicate(() => CanSeePlayer()));
-        AddTransition(seeingPlayer, lostPlayer, new Predicate(() => !PlayerNotObstructed()));
+        AddTransition(seeingPlayer, lostPlayer, new Predicate(() => !GameManager.PlayerInView(cameraHead.position)));
         AddTransition(lostPlayer, looking, new Predicate(() => lostPlayer.FinishedDelay));
-        AddTransition(lostPlayer, seeingPlayer, new Predicate(() => PlayerNotObstructed()));
+        AddTransition(lostPlayer, seeingPlayer, new Predicate(() => GameManager.PlayerInView(cameraHead.position)));
     }
     public Transform[] GetLookPoints() => lookPoints;
     public void RotateToPoint(Vector3 point){
@@ -36,7 +36,7 @@ public class TurretCamera : StateMachine
         cameraHead.rotation = Quaternion.LookRotation(diff.normalized);
     }
 
-    private bool CanSeePlayer() => coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform()) && PlayerNotObstructed();
+    private bool CanSeePlayer() => coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform()) && GameManager.PlayerInView(cameraHead.position);//PlayerNotObstructed();
     private bool PlayerNotObstructed() {
         RaycastHit hit;
         bool hitSomething = Physics.Linecast(cameraHead.position, GameManager.GetPlayerTransform().position, out hit);

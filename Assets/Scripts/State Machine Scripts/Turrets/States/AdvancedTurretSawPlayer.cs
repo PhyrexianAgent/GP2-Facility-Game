@@ -19,9 +19,9 @@ public class AdvancedTurretSawPlayer : State
     public override void Update(){
         if (lookWait == null && !DoneLooking){
             TurnToPlayer();
-            if (!GameManager.PlayerInView(lookPoint.position, lookPoint.forward)) lookWait = script.StartCoroutine(LookWait());
+            if (!GameManager.PlayerInView(lookPoint.position)) lookWait = script.StartCoroutine(LookWait());
         }
-        else if (!DoneLooking && GameManager.PlayerInView(lookPoint.position, lookPoint.forward)) script.StopCoroutine(lookWait);
+        else if (!DoneLooking && GameManager.PlayerInView(lookPoint.position)) script.StopCoroutine(lookWait);
     }
     public override void OnExit(){
         DoneLooking = false;

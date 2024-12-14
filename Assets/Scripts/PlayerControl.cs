@@ -30,6 +30,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private KeyCode runKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode sneakKey = KeyCode.LeftControl;
 
+    [Header("View Pane")]
+    [SerializeField] private ViewPane playerPane;
+
 
 
     private float vRotate;
@@ -39,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float standHeight = 4f;
     void Awake(){
         GameManager.SetPlayer(transform);
+        GameManager.SetPlayerPane(playerPane);
         controller = GetComponent<CharacterController>();
         mainCam = Camera.main;
     }

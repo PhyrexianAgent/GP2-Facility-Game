@@ -26,6 +26,7 @@ public class AdvancedTurret : StateMachine
         AddNode(sawPlayer);
 
         AddTransition(idle, activeFromCam, new Predicate(() => ActiveFromCamera));
+        AddTransition(activeFromCam, idle, new Predicate(() => !ActiveFromCamera));
         AddTransition(activeFromCam, sawPlayer, new Predicate(() => GameManager.PlayerInView(lookPoint.position, lookPoint.forward)));
         AddTransition(idle, sawPlayer, new Predicate(() => GameManager.PlayerInView(lookPoint.position, lookPoint.forward)));
         AddTransition(sawPlayer, idle, new Predicate(() => sawPlayer.DoneLooking));

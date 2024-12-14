@@ -12,7 +12,6 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     [SerializeField] private AwareConeDetector coneDetector;
     //[SerializeField] private Transform lookPoint;
     [SerializeField] private Transform groundPoint;
-    [SerializeField] private ViewPane playerPane;
     [SerializeField, Min(0)] private float peerOverCoverDistance; // Distance away from cover bot will stop at when running to cover
     [SerializeField] private bool canAttackPlayer = true;
 
@@ -56,7 +55,7 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     }
 
     bool CanSeePlayer(bool useAwareDetector){
-        return (useAwareDetector ? coneDetector.PlayerInAwareSpotlight(GameManager.GetPlayerTransform()) : coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform()));// && playerPane.PaneVisibleToPoint(coneDetector.transform.position);
+        return (useAwareDetector ? coneDetector.PlayerInAwareSpotlight(GameManager.GetPlayerTransform()) : coneDetector.PlayerInSpotlight(GameManager.GetPlayerTransform())) && GameManager.PlayerInView(coneDetector.transform.position);// && playerPane.PaneVisibleToPoint(coneDetector.transform.position);
     } 
 
     bool PresetSearchDestination(IState to){ // Method to set looking destination before state's OnEnter method runs
