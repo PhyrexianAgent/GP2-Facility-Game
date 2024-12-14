@@ -40,9 +40,12 @@ public class PlayerControl : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private float sneakCrouchHeight = 2.75f;
     [SerializeField] private float standHeight = 4f;
+
+    private Animator anim;
     void Awake(){
         GameManager.SetPlayer(transform);
         GameManager.SetPlayerPane(playerPane);
+        anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         mainCam = Camera.main;
     }
@@ -56,14 +59,21 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveHandler();
-        rotateHandler();
-        if (isRunning)
-        {
-            stamHandler();
-            if (stamRecharge != null) { StopCoroutine(stamRecharge); }
-            stamRecharge = StartCoroutine(RechargeStam());
+        if (!GameManager.PauseInput){
+            moveHandler();
+            rotateHandler();
+            if (isRunning)
+            {
+                stamHandler();
+                if (stamRecharge != null) { StopCoroutine(stamRecharge); }
+                stamRecharge = StartCoroutine(RechargeStam());
+            }
         }
+        else if (anim.GetInteger("Speed") > 0) anim.SetInteger("Speed", 0);
+        
+    }
+    private void SetAnimSpeed(Vector3 movement){
+        anim.SetInteger("Speed", movement.magnitude > 0 ? 1 : 0);
     }
     private void moveHandler()
     {
@@ -72,14 +82,14 @@ public class PlayerControl : MonoBehaviour
         float speedMultiplier = (Input.GetKey(runKey) && stam !=0) || Input.GetKey(sneakKey) ? runSneakMultiplier : 1f;
         if (Input.GetKey(sneakKey))
         {
-            vSpeed = Input.GetAxis(vMoveInput) * speed / speedMultiplier;
-            hSpeed = Input.GetAxis(hMoveInput) * speed / speedMultiplier;
+            vSpeed = Input.GetAxisRaw(vMoveInput) * speed / speedMultiplier;
+            hSpeed = Input.GetAxisRaw(hMoveInput) * speed / speedMultiplier;
             controller.height = sneakCrouchHeight;
         }
         else
         {
-            vSpeed = Input.GetAxis(vMoveInput) * speed * speedMultiplier;
-            hSpeed = Input.GetAxis(hMoveInput) * speed * speedMultiplier;
+            vSpeed = Input.GetAxisRaw(vMoveInput) * speed * speedMultiplier;
+            hSpeed = Input.GetAxisRaw(hMoveInput) * speed * speedMultiplier;
             controller.height = standHeight;
         }
         Vector3 move = new Vector3(hSpeed, 0, vSpeed);
@@ -87,6 +97,7 @@ public class PlayerControl : MonoBehaviour
 
         controller.SimpleMove(move);
         isRunning = Input.GetKey(runKey) && (move.magnitude !=0) ? true : false;
+        SetAnimSpeed(move);
         //Debug.Log(move.magnitude);
     }
     private void rotateHandler()
