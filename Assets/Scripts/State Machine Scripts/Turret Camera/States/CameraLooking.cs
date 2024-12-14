@@ -36,9 +36,9 @@ public class CameraLooking : State
         looking = false;
         currentLookIndex = GetNearestLookPointIndex();
         if (basicTurrets != null)
-            foreach (BasicTurret turret in basicTurrets) turret.IsActive = false;
+            foreach (BasicTurret turret in basicTurrets) if (turret != null) turret.IsActive = false;
         if (advancedTurrets != null)
-            foreach (AdvancedTurret turret in advancedTurrets) turret.ActiveFromCamera = false;
+            foreach (AdvancedTurret turret in advancedTurrets) if (turret != null) turret.ActiveFromCamera = false;
         if (lookPoints.Length == 0) Debug.LogWarning("Missing Lookpoints on Advanced Turret or Camera");
     }
     public override void OnExit(){
