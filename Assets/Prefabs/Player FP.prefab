@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 1215536539481573794}
   - component: {fileID: 6297827806961359701}
   - component: {fileID: 4646679766487376312}
+  - component: {fileID: 7878239932835553974}
   m_Layer: 0
   m_Name: Player FP
   m_TagString: Player
@@ -615,3 +616,19 @@ MonoBehaviour:
   visualHealth: 60
   regenRate: 1
   healthVisual: {fileID: 8318017709464650520}
+--- !u!114 &7878239932835553974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655961659707875669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff2adffe9717754d84a370984cd9dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  visualHealth: 60
+  regenRate: 1
+  healthVisual: {fileID: 0}
