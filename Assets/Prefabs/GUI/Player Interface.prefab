@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5813173597695279139}
   - component: {fileID: 8702546593266542745}
   - component: {fileID: 7993165310501440178}
+  - component: {fileID: 7492183075171853483}
   m_Layer: 5
   m_Name: Health GUI
   m_TagString: Untagged
@@ -33,10 +34,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3044004337527783743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5813173597695279139
 CanvasRenderer:
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -91,6 +92,18 @@ MonoBehaviour:
   health: 100
   visualHealth: 60
   regenRate: 0.1
+--- !u!225 &7492183075171853483
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063697135369268862}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3376315697966241679
 GameObject:
   m_ObjectHideFlags: 0
