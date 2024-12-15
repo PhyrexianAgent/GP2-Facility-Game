@@ -89,9 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff2adffe9717754d84a370984cd9dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  visualHealth: 60
-  regenRate: 0.1
+  maxHealth: 100
+  regenRate: 20
+  regenDelay: 2
 --- !u!225 &7492183075171853483
 CanvasGroup:
   m_ObjectHideFlags: 0
