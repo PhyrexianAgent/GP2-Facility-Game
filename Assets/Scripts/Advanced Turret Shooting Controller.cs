@@ -5,7 +5,9 @@ using UnityEngine;
 public class AdvancedTurretShootingController : MonoBehaviour
 {
     [SerializeField] private float spinSpeed;
+    [SerializeField] private float speedToShoot = 1500;
     [SerializeField] private GameObject turretGun;
+    [SerializeField] private GameObject particleEmitter;
     void Start()
     {
         
@@ -15,5 +17,6 @@ public class AdvancedTurretShootingController : MonoBehaviour
     void Update()
     {
         turretGun.transform.Rotate(new Vector3(0, 0, 1) * spinSpeed * Time.deltaTime);
+        particleEmitter.SetActive(spinSpeed >= speedToShoot);
     }
 }

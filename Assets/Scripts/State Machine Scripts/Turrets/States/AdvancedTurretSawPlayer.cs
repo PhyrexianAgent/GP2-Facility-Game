@@ -23,10 +23,9 @@ public class AdvancedTurretSawPlayer : State
     }
     public override void OnEnter()
     {
-        GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
-        Debug.Log("started");
+        //GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
         if (anim != null) anim.SetTrigger("Spin Up");
-        effect.SetActive(true);
+        //effect.SetActive(true);
 
         if (!_audio.isPlaying)
         {
@@ -43,8 +42,8 @@ public class AdvancedTurretSawPlayer : State
     }
     public override void OnExit(){
 
-        GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
-        effect.SetActive(false);
+        //GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
+        //effect.SetActive(false);
 
         if (_audio.isPlaying)
         {

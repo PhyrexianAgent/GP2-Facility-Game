@@ -40,7 +40,6 @@ public class CameraLooking : State
         currentLookIndex = GetNearestLookPointIndex();
         if (anim != null){
             anim.Play("Spin Down");
-            //anim.SetTrigger("Spin Down");
         } 
         if (basicTurrets != null)
             foreach (BasicTurret turret in basicTurrets) if (turret != null) turret.IsActive = false;
