@@ -16,13 +16,22 @@ public class TurretDamageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (particleController.activeSelf && damageDelay == null) damageDelay = StartCoroutine(DelayPlayerDamage());
     }
     private IEnumerator DelayPlayerDamage(){
-        while true{
-            if (!particleController.activeSelf) break;
+        Debug.Log("started damage");
+        while (true){
             GameManager.MakePlayerTakeDamage(damagePerProjectile);
-            yield return new WaitForSeconds();
+            yield return new WaitForSeconds(particleSystem.duration);
         }
+        Debug.Log("stopped damage");
+    }
+    public void SetDamageActive(bool dealDamage){
+        if (dealDamage != particleController.activeSelf){
+            if (dealDamage && damageDelay == null) 
+                damageDelay = StartCoroutine(DelayPlayerDamage());
+            else if (!dealDamage && damageDelay != null)
+                StopCoroutine(damageDelay);
+        }
+        particleController.SetActive(dealDamage);
     }
 }

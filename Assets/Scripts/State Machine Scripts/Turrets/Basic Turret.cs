@@ -7,8 +7,12 @@ public class BasicTurret : StateMachine
 {
     public Vector3 CurrentTarget {private get; set;}
     public bool IsActive {private get; set;}
-    [SerializeField] private GameObject turretArm, turretParticles;
+    [SerializeField] private GameObject turretArm;
     [SerializeField, Min(0)] private float turnRate;
+    private TurretDamageController damageController;
+    void Awake(){
+        damageController = GetComponent<TurretDamageController>();
+    }
     void Start()
     {
         InitializeStates();
@@ -33,7 +37,8 @@ public class BasicTurret : StateMachine
 
     private bool TurnToTarget(){
         turretArm.transform.rotation = GameManager.GetRotationToPointOverTime(turretArm.transform, CurrentTarget, turnRate);
-        turretParticles.SetActive(GameManager.PlayerInView(turretArm.transform.position, turretArm.transform.forward));
+        damageController.SetDamageActive(GameManager.PlayerInView(turretArm.transform.position, turretArm.transform.forward));
+        //turretParticles.SetActive(GameManager.PlayerInView(turretArm.transform.position, turretArm.transform.forward));
         return true;
     }
 }

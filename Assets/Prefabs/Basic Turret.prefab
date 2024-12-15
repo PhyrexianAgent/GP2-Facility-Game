@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4229906154732225887}
   - component: {fileID: 4353783637314095701}
   - component: {fileID: 5881270276243072543}
+  - component: {fileID: 4658662645089797909}
   m_Layer: 0
   m_Name: Basic Turret
   m_TagString: Untagged
@@ -133,7 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretArm: {fileID: 7412912108556089131}
-  turretParticles: {fileID: 7538280116178514571}
   turnRate: 1
 --- !u!82 &5881270276243072543
 AudioSource:
@@ -231,6 +231,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4658662645089797909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393783820921060416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35d3137e42cf1cf4bd322e2e6e759ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleController: {fileID: 7538280116178514571}
+  damagePerProjectile: 1
 --- !u!1 &437909512517046094
 GameObject:
   m_ObjectHideFlags: 0

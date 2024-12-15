@@ -20751,6 +20751,7 @@ GameObject:
   - component: {fileID: 4228776572664480567}
   - component: {fileID: 3973989877201269475}
   - component: {fileID: 3361216504276132639}
+  - component: {fileID: 7515083913551674939}
   m_Layer: 0
   m_Name: Advanced Turret
   m_TagString: Untagged
@@ -20924,10 +20925,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd88438190e18e44bf2c98579975cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpeed: 500
+  spinSpeed: 0
   speedToShoot: 1500
   turretGun: {fileID: 7613390973896525629}
-  particleEmitter: {fileID: 4318503174156480059}
 --- !u!95 &3361216504276132639
 Animator:
   serializedVersion: 5
@@ -20949,6 +20949,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7515083913551674939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223564759076898818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35d3137e42cf1cf4bd322e2e6e759ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleController: {fileID: 4318503174156480059}
+  damagePerProjectile: 1
 --- !u!1 &7613390973896525629
 GameObject:
   m_ObjectHideFlags: 0
