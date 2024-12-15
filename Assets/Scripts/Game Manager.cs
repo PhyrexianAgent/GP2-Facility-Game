@@ -13,11 +13,13 @@ public class GameManager
     public static GameDialogController CurrentDialogGUI;
     public static Transform PlayerInterface;
     public static int WorkbotsCollectedCount {get; private set;}
-    private static Transform player;
+    private static Transform playerTrans;
     private static ViewPane playerPane;
+    private static SimpleHealth playerHealth;
     private static Dictionary<DialogSource, Sprite> characterHeads = new Dictionary<DialogSource, Sprite>();
-    public static void SetPlayer(Transform playerTrans) => player = playerTrans;
-    public static Transform GetPlayerTransform() => player;
+    public static void SetPlayer(Transform playerTransform) => playerTrans = playerTransform;
+    public static Transform GetPlayerTransform() => playerTrans;
+    public static void SetPlayerHealth(SimpleHealth health) => playerHealth = health;
     public static Sprite GetCharacterHead(DialogSource character) => characterHeads[character];
     public static Quaternion GetRotationToPointOverTime(Transform target, Vector3 point, float turnRate){
         Vector3 diff = point - target.position;
@@ -27,8 +29,8 @@ public class GameManager
     public static ViewPane SetPlayerPane(ViewPane pane) => playerPane = pane;
     public static GameObject GetObjectBetweenPlayerAndTarget(Transform target){
         RaycastHit hit;
-        Vector3 dirFromPlayerToTarget = (target.position - player.position).normalized;
-        if (!Physics.Raycast(player.position, dirFromPlayerToTarget, out hit, 500)) return null;
+        Vector3 dirFromPlayerToTarget = (target.position - playerTrans.position).normalized;
+        if (!Physics.Raycast(playerTrans.position, dirFromPlayerToTarget, out hit, 500)) return null;
         return hit.collider.gameObject;
     }
     public static GameObject GetObjectFromRay(Vector3 position, Vector3 direction){
@@ -47,4 +49,5 @@ public class GameManager
         return playerPane.PaneVisibleToPoint(position);
     }
     public static int CollectWorkBot() => WorkbotsCollectedCount++;
+    public static void MakePlayerTakeDamage(float damage) => playerHealth.DealDamage(damage);
 }
