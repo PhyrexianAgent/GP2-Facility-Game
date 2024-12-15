@@ -23,7 +23,7 @@ public class WorkbotStatemachine : StateMachine
     void Start()
     {
         UnityEvent<Sound> unityEvent = soundListener.GetUnityEvent();
-        Working working = new Working(gameObject, unityEvent);
+        Working working = new Working(gameObject, unityEvent, turnRate);
         LookingTowardsSound looking = new LookingTowardsSound(gameObject, unityEvent, turnRate, lookDuration);
         Fleeing fleeing = new Fleeing(gameObject, fleePoint.position, fleeSpeed);
 
@@ -33,6 +33,7 @@ public class WorkbotStatemachine : StateMachine
 
         AddTransition(working, looking, new Predicate(() => working.TransitionFromEvent), SetInitialSearchDirection);
         AddTransition(looking, fleeing, new Predicate(() => visionCone.PlayerInSpotlight(GameManager.GetPlayerTransform()) && GameManager.PlayerInView(visionCone.transform.position)));
+        AddTransition(looking, working, new Predicate(() => looking.DoneLooking));
     }
 
     private bool SetInitialSearchDirection(IState state){
@@ -42,7 +43,9 @@ public class WorkbotStatemachine : StateMachine
         return true;
     }
 
-    public void HeardSound(Sound sound) => lastHeardSound = sound;
+    public void HeardSound(Sound sound){
+        lastHeardSound = sound;
+    } //=> lastHeardSound = sound;
     public void KeyPressed(){
         GameManager.CollectWorkBot();
         Destroy(gameObject);

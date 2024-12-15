@@ -20,7 +20,6 @@ public class LookingTowardsSound : EventListenerState<Sound>
     }
     public override void OnEnter(){
         base.OnEnter();
-        Debug.Log("entered");
         DoneLooking = false;
     }
     public override void Update(){
@@ -43,6 +42,7 @@ public class LookingTowardsSound : EventListenerState<Sound>
     private IEnumerator LookDelay(){
         lookingAtPoint = true;
         yield return new WaitForSeconds(lookDuration);
+        Debug.Log("end look delay");
         DoneLooking = true;
     }
     public void SetInitialLookPoint(Vector3 point){
