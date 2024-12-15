@@ -23,9 +23,7 @@ public class AdvancedTurretSawPlayer : State
     }
     public override void OnEnter()
     {
-        //GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
         if (anim != null) anim.SetTrigger("Spin Up");
-        //effect.SetActive(true);
 
         if (!_audio.isPlaying)
         {
@@ -41,10 +39,6 @@ public class AdvancedTurretSawPlayer : State
         else if (!DoneLooking && GameManager.PlayerInView(lookPoint.position)) script.StopCoroutine(lookWait);
     }
     public override void OnExit(){
-
-        //GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
-        //effect.SetActive(false);
-
         if (_audio.isPlaying)
         {
             _audio.Stop();
@@ -61,26 +55,5 @@ public class AdvancedTurretSawPlayer : State
     private IEnumerator LookWait(){
         yield return new WaitForSeconds(lookDuration);
         DoneLooking = true;
-    }
-
-    GameObject FindDescendant(Transform parent, string target)
-    {
-        // Check if current descendant matches
-        if (parent.gameObject.name == target)
-        {
-            return parent.gameObject;
-        }
-
-        // Search through all descendants
-        foreach (Transform child in parent)
-        {
-            GameObject found = FindDescendant(child, target);
-            if (found != null)
-            {
-                return found;
-            }
-        }
-
-        return null;
     }
 }

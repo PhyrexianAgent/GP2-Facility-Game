@@ -20925,7 +20925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 500
+  speedToShoot: 1500
   turretGun: {fileID: 7613390973896525629}
+  particleEmitter: {fileID: 4318503174156480059}
 --- !u!95 &3361216504276132639
 Animator:
   serializedVersion: 5
