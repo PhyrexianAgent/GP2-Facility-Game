@@ -7,6 +7,7 @@ public class TempLevelSwapScript : MonoBehaviour
 {
     [Tooltip("Pick the build index of the level you wish to load")]
     [SerializeField] public int nextLevelIndex = -1;
+    public SceneControl sceneControl;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +29,8 @@ public class TempLevelSwapScript : MonoBehaviour
 
             if (sceneToLoad < SceneManager.sceneCountInBuildSettings)
             {
-                SceneManager.LoadScene(sceneToLoad);
+                StartCoroutine(sceneControl.sceneLoader(sceneToLoad));
+                //SceneManager.LoadScene(sceneToLoad);
             }
             else
             {

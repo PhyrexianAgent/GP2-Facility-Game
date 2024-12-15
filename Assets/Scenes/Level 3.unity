@@ -2075,6 +2075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevelIndex: 0
+  sceneControl: {fileID: 5016928940527535556}
 --- !u!65 &117851619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29691,6 +29692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevelIndex: 2
+  sceneControl: {fileID: 0}
 --- !u!65 &2073874596
 BoxCollider:
   m_ObjectHideFlags: 0
