@@ -12,16 +12,20 @@ public class AdvancedTurretSawPlayer : State
     private MonoBehaviour script;
     private Transform lookPoint;
     private AudioSource _audio;
+    private Animator anim;
     public AdvancedTurretSawPlayer(GameObject agent, GameObject turretHead, float lookDuration, Transform lookPoint, AudioSource audio) : base(agent) {
         this.turretHead = turretHead;
         this.lookDuration = lookDuration;
         this.lookPoint = lookPoint;
         script = agent.GetComponent<MonoBehaviour>();
+        anim = agent.GetComponent<Animator>();
         _audio = audio;
     }
     public override void OnEnter()
     {
         GameObject effect = FindDescendant(turretHead.transform, "Shooting_ParticleSystem");
+        Debug.Log("started");
+        if (anim != null) anim.SetTrigger("Spin Up");
         effect.SetActive(true);
 
         if (!_audio.isPlaying)
