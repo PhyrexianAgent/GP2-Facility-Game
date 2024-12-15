@@ -55,7 +55,7 @@ public class SceneControl : MonoBehaviour
         yield return sceneFade.fadeOut(fadeDuration);
         yield return SceneManager.LoadSceneAsync(sceneName);
     }
-    private IEnumerator sceneLoader(int sceneIndex)
+    public IEnumerator sceneLoader(int sceneIndex)
     {
         SFX.PlayOneShot(levelEnd1);
         yield return new WaitForSeconds(0.3f);
