@@ -13,10 +13,11 @@ public class SimpleHealth : MonoBehaviour
     public float regenRate = 0.1f;
     private float regenTimer = 0f;
 
-    public Image healthVisual;
+    private Image healthVisual;
 
     private void Start()
     {
+        healthVisual = GetComponent<Image>();
         GameManager.SetPlayerHealth(this);
         maxHealth = health;
         visualHealth = (maxHealth / 100) * visualHealth;
@@ -32,7 +33,7 @@ public class SimpleHealth : MonoBehaviour
         else
         {
             float alpha = ((150 / 100) * (1 - (health / visualHealth)));
-            //Debug.Log(alpha);
+            Debug.Log(alpha);
             healthVisual.color = new Color(healthVisual.color.r, healthVisual.color.g, healthVisual.color.b, alpha);
             if (health < maxHealth)
             {
