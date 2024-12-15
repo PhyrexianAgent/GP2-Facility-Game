@@ -17,6 +17,6 @@ public class AdvancedTurretShootingController : MonoBehaviour
     void Update()
     {
         turretGun.transform.Rotate(new Vector3(0, 0, 1) * spinSpeed * Time.deltaTime);
-        particleEmitter.SetActive(spinSpeed >= speedToShoot);
+        particleEmitter.SetActive(spinSpeed >= speedToShoot && GameManager.PlayerInView(turretGun.transform.position));
     }
 }

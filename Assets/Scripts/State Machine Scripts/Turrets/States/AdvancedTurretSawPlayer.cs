@@ -9,7 +9,7 @@ public class AdvancedTurretSawPlayer : State
     private GameObject turretHead;
     private float lookDuration;
     private Coroutine lookWait;
-    private MonoBehaviour script;
+    private AdvancedTurret script;
     private Transform lookPoint;
     private AudioSource _audio;
     private Animator anim;
@@ -17,7 +17,7 @@ public class AdvancedTurretSawPlayer : State
         this.turretHead = turretHead;
         this.lookDuration = lookDuration;
         this.lookPoint = lookPoint;
-        script = agent.GetComponent<MonoBehaviour>();
+        script = agent.GetComponent<AdvancedTurret>();
         anim = agent.GetComponent<Animator>();
         _audio = audio;
     }
