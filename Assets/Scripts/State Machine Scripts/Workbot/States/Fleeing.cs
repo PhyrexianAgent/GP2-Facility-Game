@@ -17,4 +17,7 @@ public class Fleeing : State
         navAgent.SetDestination(fleePoint);
         navAgent.speed = fleeSpeed;
     }
+    public override void Update(){
+        if (navAgent.remainingDistance <= 0.15f) MonoBehaviour.Destroy(agent);
+    }
 }
