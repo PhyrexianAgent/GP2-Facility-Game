@@ -9,7 +9,7 @@ public class SimpleHealth : MonoBehaviour
 
     public float health = 100f;
     private float maxHealth;
-    public float visualHealth = 60f; // 0 - 100
+    public float visualHealth = 60f;
     public float regenRate = 0.1f;
     [SerializeField, Min(0)] private float regenDelay = 0.3f;
     private float regenTimer = 0f;
@@ -20,7 +20,7 @@ public class SimpleHealth : MonoBehaviour
 
     private void Start()
     {
-        healthVisual = GetComponent<Image>();
+        healthCanvasGroup = GetComponent<CanvasGroup>();
         GameManager.SetPlayerHealth(this);
         maxHealth = health;
         visualHealth = (maxHealth / 100) * visualHealth;
