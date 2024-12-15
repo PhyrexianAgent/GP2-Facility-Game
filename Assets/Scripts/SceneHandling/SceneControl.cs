@@ -25,6 +25,19 @@ public class SceneControl : MonoBehaviour
         StartCoroutine(sceneLoader(sceneName));
     }
 
+    public void loadScene(int sceneIndex)
+    {
+        if (sceneIndex != -1)
+        {
+            StartCoroutine(sceneLoader(sceneIndex));
+        }
+        else
+        {
+            Debug.Log("Quit Game");
+            Application.Quit();
+        }
+    }
+
     // Start is called before the first frame update
     private IEnumerator Start()
     {
@@ -41,6 +54,15 @@ public class SceneControl : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return sceneFade.fadeOut(fadeDuration);
         yield return SceneManager.LoadSceneAsync(sceneName);
+    }
+    private IEnumerator sceneLoader(int sceneIndex)
+    {
+        SFX.PlayOneShot(levelEnd1);
+        yield return new WaitForSeconds(0.3f);
+        SFX.PlayOneShot(levelEnd2);
+        yield return new WaitForSeconds(0.5f);
+        yield return sceneFade.fadeOut(fadeDuration);
+        yield return SceneManager.LoadSceneAsync(sceneIndex);
     }
     //purely for test purposes
     private void Update()
