@@ -65,4 +65,5 @@ public class GameManager
     public static void ChangeScene(string sceneName){
         SceneManager.LoadSceneAsync(sceneName);
     }
+    public static void RestartScene() => ChangeScene(SceneManager.GetActiveScene().name);
 }

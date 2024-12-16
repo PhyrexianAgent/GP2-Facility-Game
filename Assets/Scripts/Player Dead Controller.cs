@@ -29,6 +29,6 @@ public class PlayerDeadController : MonoBehaviour
         Debug.Log("Pressed quit");
     }
     public void RetryPressed(){
-        Debug.Log("Pressed retry");
+        GameManager.RestartScene();
     }
 }
