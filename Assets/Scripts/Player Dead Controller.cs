@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDeadController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Button quitButton, retryButton;
+    private Animator anim;
+    void Awake(){
+        GameManager.PlayerDeadGUI = this;
+        anim = GetComponent<Animator>();
+    }
     void Start()
     {
-        
+        quitButton.onClick.AddListener(QuitPressed);
+        retryButton.onClick.AddListener(RetryPressed);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void PlayerDied(){
+        anim.enabled = true;
+    }
+
+    public void QuitPressed(){
+        //Application.Quit();
+        Debug.Log("Pressed quit");
+    }
+    public void RetryPressed(){
+        Debug.Log("Pressed retry");
     }
 }

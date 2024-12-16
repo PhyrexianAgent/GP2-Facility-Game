@@ -52,7 +52,7 @@ public class SimpleHealth : MonoBehaviour
             health -= damage;
             RefreshRegenDelay();
             died = health <= 0;
-            if (died) Debug.Log("Player Died");
+            if (died) GameManager.KillPlayer();
         }
     }
 

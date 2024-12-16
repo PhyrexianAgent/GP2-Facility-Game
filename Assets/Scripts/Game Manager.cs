@@ -12,6 +12,7 @@ public class GameManager
 {
     public static bool PauseInput;
     public static GameDialogController CurrentDialogGUI;
+    public static PlayerDeadController PlayerDeadGUI;
     public static ElevatorEntranceController CurrentElevatorEntrance;
     public static Transform PlayerInterface;
     public static SceneFader CurrentSceneFader;
@@ -20,8 +21,13 @@ public class GameManager
     private static ViewPane playerPane;
     private static SimpleHealth playerHealth;
     private static Dictionary<DialogSource, Sprite> characterHeads = new Dictionary<DialogSource, Sprite>();
-    public static void KillPlayer(GameObject deadPlayerPrefab){
-        Vector3 forward = playerTrans.forward;
+    public static void KillPlayer(){
+        PauseInput = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        MonoBehaviour.Destroy(playerTrans.GetComponent<PlayerControl>());
+        MonoBehaviour.Destroy(playerTrans.GetComponent<CharacterController>());
+        PlayerDeadGUI.PlayerDied();
     }
     public static void SetPlayer(Transform playerTransform) => playerTrans = playerTransform;
     public static Transform GetPlayerTransform() => playerTrans;
