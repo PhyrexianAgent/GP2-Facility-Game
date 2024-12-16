@@ -15,6 +15,13 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
     [SerializeField, Min(0)] private float peerOverCoverDistance; // Distance away from cover bot will stop at when running to cover
     [SerializeField] private bool canAttackPlayer = true;
 
+    [Header("Audio Sources")]
+    [SerializeField] public AudioSource passiveSound;
+    [SerializeField] public AudioSource footStepSound;
+    [SerializeField] public AudioSource footEchoSound;
+    [SerializeField] public AudioSource gunSound;
+
+
     private NavMeshAgent navAgent;
     //private IState tempStateKey;
     
@@ -89,5 +96,12 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
         }
         Debug.Log(hit.collider.name);
         return hit.collider.transform;
+    }
+
+    public void PlaySoundEffect(string name)
+    {
+        if (name == "footstep") footStepSound.PlayOneShot(footStepSound.clip);
+        else if (name == "footecho") footEchoSound.PlayOneShot(footEchoSound.clip);
+        else if (name == "shoot") gunSound.PlayOneShot(gunSound.clip);
     }
 }
