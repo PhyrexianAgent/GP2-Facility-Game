@@ -23053,6 +23053,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4011993230733722264, guid: bf6903915377b9811bea857742cb2060, type: 3}
+      propertyPath: makePlayerWin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011993230733722264, guid: bf6903915377b9811bea857742cb2060, type: 3}
       propertyPath: nextSceneName
       value: MainMenu
       objectReference: {fileID: 0}

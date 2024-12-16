@@ -17,6 +17,7 @@ public class ElevatorEntranceController : MonoBehaviour
     [SerializeField] private DialogManager entranceDialog;
     [SerializeField] private DialogManager lockedDialog;
     [SerializeField] private string nextSceneName;
+    [SerializeField] private bool makePlayerWin = false;
 
 
     private AudioSource audio;
@@ -78,23 +79,10 @@ public class ElevatorEntranceController : MonoBehaviour
             lockedDialog.Reset();
             GameManager.CurrentDialogGUI.StartDialog(lockedDialog);
         }
-        else GameManager.ChangeScene(nextSceneName);
+        else if (makePlayerWin)
+            GameManager.PlayerWon();
+        else
+            GameManager.ChangeScene(nextSceneName);
     }
     public void Unlock() => locked = false;
-
-    public void LoadScene(int index)
-    {
-        if (index == -1)
-        {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #else
-                Application.Quit();
-            #endif
-        }
-        else
-        {
-            SceneManager.LoadScene(index);
-        }
-    }
 }
