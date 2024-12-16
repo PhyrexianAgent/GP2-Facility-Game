@@ -8,19 +8,34 @@ public class Working : EventListenerState<Sound>
     private Quaternion startRotation;
     private float turnRate;
     private bool turningToStart = false;
-    public Working(GameObject agent, UnityEvent<Sound> soundEvent, float turnRate) : base(agent, soundEvent){
+    private AudioSource audioSource;
+    private AudioClip audioClip;
+    public Working(GameObject agent, UnityEvent<Sound> soundEvent, float turnRate, AudioSource audioSource, AudioClip audioClip) : base(agent, soundEvent){
         startRotation = agent.transform.rotation;
         this.turnRate = turnRate;
+
+        this.audioSource = audioSource;
+        this.audioClip = audioClip;
     }
     public override void OnEnter(){
         base.OnEnter();
         turningToStart = agent.transform.rotation != startRotation;
+
+        audioSource.loop = true;
+        audioSource.clip = audioClip;
+        audioSource.Play();
+
         //Debug.Log(turningToStart);
     }
     public override void Update(){
         if (turningToStart && agent.transform.rotation != startRotation){
             agent.transform.rotation = Quaternion.RotateTowards(agent.transform.rotation, startRotation, turnRate * Time.deltaTime * 30);
         }
+    }
+
+    public override void OnExit()
+    {
+        audioSource.Stop();
     }
 
     protected override void EventCallMethod(Sound sound){

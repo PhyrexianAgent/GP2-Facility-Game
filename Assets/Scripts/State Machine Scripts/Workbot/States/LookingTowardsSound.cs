@@ -13,17 +13,32 @@ public class LookingTowardsSound : EventListenerState<Sound>
     private WorkbotStatemachine coroutineRunner; // Note this makes this state require the Workbot state machine script
     private Coroutine lookCoroutine;
     private bool lookingAtPoint = false;
-    public LookingTowardsSound(GameObject agent, UnityEvent<Sound> unityEvent, float turnRate, float lookDuration) : base(agent, unityEvent){
+
+    private AudioSource audioSource;
+    private AudioClip audioClip;
+    public LookingTowardsSound(GameObject agent, UnityEvent<Sound> unityEvent, float turnRate, float lookDuration, AudioSource audioSource, AudioClip audioClip) : base(agent, unityEvent){
         this.turnRate = turnRate;
         this.lookDuration = lookDuration;
         coroutineRunner = agent.GetComponent<WorkbotStatemachine>();
+
+        this.audioSource = audioSource;
+        this.audioClip = audioClip;
     }
     public override void OnEnter(){
         base.OnEnter();
         DoneLooking = false;
+
+        audioSource.loop = true;
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
     public override void Update(){
         if (!DoneLooking && !lookingAtPoint) LookToLookPoint();
+    }
+
+    public override void OnExit()
+    {
+        audioSource.Stop();
     }
 
     protected override void EventCallMethod(Sound sound){

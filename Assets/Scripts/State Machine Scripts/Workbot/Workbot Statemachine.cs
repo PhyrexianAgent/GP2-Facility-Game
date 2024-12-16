@@ -15,17 +15,22 @@ public class WorkbotStatemachine : StateMachine
     private Sound lastHeardSound;
     //private Working test;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip idleClip;
+    [SerializeField] AudioClip fleeClip;
+    
+
     void Awake(){
         soundListener = GetComponent<SoundListener>();
         navAgent = GetComponent<NavMeshAgent>();
-
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
         UnityEvent<Sound> unityEvent = soundListener.GetUnityEvent();
-        Working working = new Working(gameObject, unityEvent, turnRate);
-        LookingTowardsSound looking = new LookingTowardsSound(gameObject, unityEvent, turnRate, lookDuration);
-        Fleeing fleeing = new Fleeing(gameObject, fleePoint.position, fleeSpeed);
+        Working working = new Working(gameObject, unityEvent, turnRate, audioSource, idleClip);
+        LookingTowardsSound looking = new LookingTowardsSound(gameObject, unityEvent, turnRate, lookDuration, audioSource, idleClip);
+        Fleeing fleeing = new Fleeing(gameObject, fleePoint.position, fleeSpeed, audioSource, fleeClip);
 
         AddNode(working, true);
         AddNode(looking);
