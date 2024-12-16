@@ -97,11 +97,25 @@ public class BigBotStateMachine : StateMachine // Make detection area bigger whe
         Debug.Log(hit.collider.name);
         return hit.collider.transform;
     }
+    private IEnumerator DelayPlayerDeath(){
+        GameManager.PauseInput = true;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.KillPlayer();
+    }
 
     public void PlaySoundEffect(string name)
     {
-        if (name == "footstep") footStepSound.PlayOneShot(footStepSound.clip);
-        else if (name == "footecho") footEchoSound.PlayOneShot(footEchoSound.clip);
-        else if (name == "shoot") gunSound.PlayOneShot(gunSound.clip);
+        switch(name){
+            case "footstep":
+                footStepSound.PlayOneShot(footStepSound.clip);
+                break;
+            case "footecho":
+                footEchoSound.PlayOneShot(footEchoSound.clip);
+                break;
+            case "shoot":
+                gunSound.PlayOneShot(gunSound.clip);
+                StartCoroutine(DelayPlayerDeath());
+                break;
+        }
     }
 }
