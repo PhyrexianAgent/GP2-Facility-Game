@@ -22,7 +22,8 @@ public class KeyRevealController : MonoBehaviour
         if (currentIcon != null && Input.GetKeyUp(KeyCode.E)){
             eventCalled = true;
             keyPressedEvent.Invoke();
-
+            Destroy(currentIcon);
+            currentIcon = null;
         }
     }
     void OnDrawGizmosSelected(){

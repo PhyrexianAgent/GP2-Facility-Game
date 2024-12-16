@@ -59,7 +59,8 @@ public class ElevatorEntranceController : MonoBehaviour
         audio.PlayOneShot(levelBegin2);
     }
     public void LeaveLevel(){
-
+        lockedDialog.Reset();
+        GameManager.CurrentDialogGUI.StartDialog(lockedDialog);
     }
 
 }
