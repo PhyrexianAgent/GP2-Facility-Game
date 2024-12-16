@@ -9,13 +9,14 @@ public class GameDialogController : MonoBehaviour
     [SerializeField] private DialogTextController textController;
     [SerializeField] private Image characterIconBack;
     [SerializeField] private Image characterIcon;
-    [SerializeField] private CanvasGroup dialogGroup;
 
+    private CanvasGroup dialogGroup;
     private DialogManager currentManager;
     private bool finishedCurrentDialog = false;
     private Image dialogBack;
     private List<Func<bool>> endCallMethods = new List<Func<bool>>();
     void Awake(){
+        dialogGroup = GetComponent<CanvasGroup>();
         dialogBack = GetComponent<Image>();
         GameManager.CurrentDialogGUI = this;
         GameManager.PlayerInterface = transform.parent;
@@ -46,8 +47,11 @@ public class GameDialogController : MonoBehaviour
         }
     }
     public void StartDialog(DialogController controller){
+        StartDialog(controller.GetCurrentManager());
+    }
+    public void StartDialog(DialogManager manager){
         finishedCurrentDialog = false;
-        currentManager = controller.GetCurrentManager();
+        currentManager = manager;
         if (currentManager != null){
             SetVisible(true);
             SetCurrentDialog();
@@ -60,10 +64,10 @@ public class GameDialogController : MonoBehaviour
             //GameManager.StartKillAnimation();
         } 
         else{
-            if (!dialogBack.enabled) SetVisible(true);
+            SetVisible(true);
             textController.SetWholeDialog(currentManager.GetCurrentText());
-            characterIcon.sprite = currentManager.GetCurrentSprite();
-            SetPortraitVisible(currentManager.GetCurrentSprite() != null);
+            //characterIcon.sprite = currentManager.GetCurrentSprite();
+            //SetPortraitVisible(currentManager.GetCurrentSprite() != null);
         }
         
     }

@@ -13,6 +13,9 @@ public class KeyRevealController : MonoBehaviour
     private KeyCode keyToPress = KeyCode.E;
     private GameObject currentIcon = null;
     private bool eventCalled = false;
+    void Start(){
+        if (Vector3.Distance(GameManager.GetPlayerTransform().position, transform.position) <= triggerDistance) eventCalled = true;
+    }
     void Update()
     {
         RevealIconWhenNeeded();

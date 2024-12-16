@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum DialogSource{
     mission_control,
@@ -51,4 +52,7 @@ public class GameManager
     }
     public static int CollectWorkBot() => WorkbotsCollectedCount++;
     public static void MakePlayerTakeDamage(float damage) => playerHealth.DealDamage(damage);
+    public static void ChangeScene(string sceneName){
+        SceneManager.LoadSceneAsync(sceneName);
+    }
 }

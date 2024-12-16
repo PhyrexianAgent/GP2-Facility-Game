@@ -63,15 +63,17 @@ public class PlayerControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        controller.height = standHeight;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        rotateHandler();
         if (!GameManager.PauseInput){
             moveHandler();
-            rotateHandler();
+            
             if (isRunning)
             {
                 stamHandler();

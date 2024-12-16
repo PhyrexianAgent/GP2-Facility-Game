@@ -220,6 +220,8 @@ GameObject:
   - component: {fileID: 740842737181344328}
   - component: {fileID: 1550140747143212306}
   - component: {fileID: 2581236499089289179}
+  - component: {fileID: 7632921866945772831}
+  - component: {fileID: 4814472418776851067}
   m_Layer: 0
   m_Name: SceneFade
   m_TagString: Untagged
@@ -296,6 +298,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fc72549edd20948b3a12ed62e7db39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &7632921866945772831
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218683006456641116}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &4814472418776851067
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218683006456641116}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfe920d298e843519839514e598c3ea4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6861468786125412307
 PrefabInstance:
   m_ObjectHideFlags: 0
