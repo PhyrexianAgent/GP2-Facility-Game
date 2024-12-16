@@ -25,8 +25,7 @@ public class PlayerDeadController : MonoBehaviour
     }
 
     public void QuitPressed(){
-        //Application.Quit();
-        Debug.Log("Pressed quit");
+        GameManager.ChangeScene("MainMenu");
     }
     public void RetryPressed(){
         GameManager.RestartScene();
