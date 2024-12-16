@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
-  m_Name: Dialog 4
+  m_Name: Dialog 3
   m_EditorClassIdentifier: 
-  Text: Just keep out of sight from the cameras and you should be just fine.
+  Text: It is massive and packs a massive punch.
   Source: 0
   TriggerKillAnimation: 0

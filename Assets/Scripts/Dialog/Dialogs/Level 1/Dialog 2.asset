@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 2
   m_EditorClassIdentifier: 
-  Text: Your objective is simple. You are to get to the lowest level of the facility,
-    plant explosives, and escape alive.
+  Text: Your task is to get to the lowest level, plant explosives, and get out.
   Source: 0
   TriggerKillAnimation: 0

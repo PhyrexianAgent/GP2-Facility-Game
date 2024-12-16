@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 8
   m_EditorClassIdentifier: 
-  Text: Either way get to it, I will speak to you again when you reach te next floor.
+  Text: Lastly to procede down you need to find the control panel on each floor.
   Source: 0
   TriggerKillAnimation: 0

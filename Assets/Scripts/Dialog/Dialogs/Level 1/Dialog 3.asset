@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 3
   m_EditorClassIdentifier: 
-  Text: Be careful, due to previous incursions this facility is on high alert.
+  Text: Due to previous infiltrators, security is on higb alert.
   Source: 0
   TriggerKillAnimation: 0
