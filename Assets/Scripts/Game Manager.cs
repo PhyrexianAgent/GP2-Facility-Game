@@ -20,6 +20,9 @@ public class GameManager
     private static ViewPane playerPane;
     private static SimpleHealth playerHealth;
     private static Dictionary<DialogSource, Sprite> characterHeads = new Dictionary<DialogSource, Sprite>();
+    public static void KillPlayer(GameObject deadPlayerPrefab){
+        Vector3 forward = playerTrans.forward;
+    }
     public static void SetPlayer(Transform playerTransform) => playerTrans = playerTransform;
     public static Transform GetPlayerTransform() => playerTrans;
     public static void SetPlayerHealth(SimpleHealth health) => playerHealth = health;
