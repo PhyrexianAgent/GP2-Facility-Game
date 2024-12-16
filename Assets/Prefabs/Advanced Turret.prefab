@@ -273,12 +273,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716758209012423946}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.108, z: 1.627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4144123364025352424}
+  m_Father: {fileID: 2334988673059867682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768576954108634799
 GameObject:
@@ -15722,6 +15722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4406371737021728729}
   - {fileID: 6111560762802359494}
   - {fileID: 5584087564693928862}
   - {fileID: 3349856939478730948}
@@ -20928,6 +20929,7 @@ MonoBehaviour:
   spinSpeed: 0
   speedToShoot: 1500
   turretGun: {fileID: 7613390973896525629}
+  barrelPoint: {fileID: 4406371737021728729}
 --- !u!95 &3361216504276132639
 Animator:
   serializedVersion: 5
@@ -20995,7 +20997,6 @@ Transform:
   - {fileID: 5730063416544913609}
   - {fileID: 378214693353082834}
   - {fileID: 5890480613006491061}
-  - {fileID: 4406371737021728729}
   m_Father: {fileID: 2334988673059867682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8297842855989818479

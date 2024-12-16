@@ -41,7 +41,7 @@ public class GameManager
     public static bool PlayerInView(Vector3 position, Vector3 direction){
         RaycastHit hit;
         if (!Physics.Raycast(position, direction, out hit)) return false;
-        //Debug.DrawLine(position, hit.point, Color.red, 0);
+        Debug.DrawLine(position, hit.point, Color.red, 0);
         return hit.collider.tag == "Player";
     }
     public static bool PlayerInView(Vector3 position){

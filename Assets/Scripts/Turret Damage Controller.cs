@@ -19,12 +19,10 @@ public class TurretDamageController : MonoBehaviour
     {
     }
     private IEnumerator DelayPlayerDamage(){
-        Debug.Log("started damage");
         while (true){
             if (dealDamage) GameManager.MakePlayerTakeDamage(damagePerProjectile);
             yield return new WaitForSeconds(particleSystem.duration);
         }
-        Debug.Log("stopped damage");
     }
     private IEnumerator DelayCoroutineTest(){
         yield return null;

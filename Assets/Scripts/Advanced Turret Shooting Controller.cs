@@ -7,6 +7,7 @@ public class AdvancedTurretShootingController : MonoBehaviour
     [SerializeField] private float spinSpeed;
     [SerializeField] private float speedToShoot = 1500;
     [SerializeField] private GameObject turretGun;
+    [SerializeField] private Transform barrelPoint;
     private TurretDamageController damageController;
     void Awake()
     {
@@ -15,6 +16,6 @@ public class AdvancedTurretShootingController : MonoBehaviour
     void Update()
     {
         turretGun.transform.Rotate(new Vector3(0, 0, 1) * spinSpeed * Time.deltaTime);
-        damageController.SetDamageActive(spinSpeed >= speedToShoot && GameManager.PlayerInView(turretGun.transform.position));
+        damageController.SetDamageActive(spinSpeed >= speedToShoot && GameManager.PlayerInView(barrelPoint.position, barrelPoint.forward));
     }
 }
