@@ -82,8 +82,10 @@ public class PlayerControl : MonoBehaviour
             }
         }
         else if (anim.GetInteger("Speed") > 0) anim.SetInteger("Speed", 0);
+        #if UNITY_EDITOR
         if (Input.GetKeyUp(KeyCode.K)) EditorApplication.isPlaying = false;
-        
+        #endif
+
     }
     private void SetAnimSpeed(Vector3 movement){
         MoveSpeed value = MoveSpeed.idle;

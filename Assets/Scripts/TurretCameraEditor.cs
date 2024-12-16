@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 //[CustomEditor(typeof(TurretCamera))]
+#if UNITY_EDITOR
 public class TurretCameraEditor : Editor
 {
     private bool togglePointButtons;
@@ -28,3 +33,4 @@ public class TurretCameraEditor : Editor
         }
     }
 }
+#endif
