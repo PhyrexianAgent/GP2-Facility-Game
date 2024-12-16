@@ -20,10 +20,11 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float upDownRange = 80f;
 
     [Header("Stamina")]
-    [SerializeField] private float stam = 1000;
-    [SerializeField] private float maxStam = 1000;
+    [SerializeField] public float stam = 1000;
+    [SerializeField] public float maxStam = 1000;
     [SerializeField] private float runStam = 1;
     [SerializeField] private float rechargeRate = 1;
+    [SerializeField] private StaminaControl staminaBarFill;
     private Coroutine stamRecharge;
     private bool isRunning;
 
@@ -53,6 +54,7 @@ public class PlayerControl : MonoBehaviour
     void Awake(){
         GameManager.SetPlayer(transform);
         GameManager.SetPlayerPane(playerPane);
+        staminaBarFill = GetComponent<StaminaControl>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         mainCam = Camera.main;
@@ -151,6 +153,7 @@ public class PlayerControl : MonoBehaviour
     {
         stam = Input.GetKey(runKey) ? stam-(runStam / 10f) : stam;
         if (stam < 0) { stam = 0; }
+        staminaBarFill.updateStamBar(stam, maxStam);
     }
     private IEnumerator RechargeStam()
     {
@@ -160,6 +163,7 @@ public class PlayerControl : MonoBehaviour
             stam += rechargeRate / 10f;
             if (stam > maxStam) { stam = maxStam; }
             yield return new WaitForSeconds(0.1f);
+            staminaBarFill.updateStamBar(stam, maxStam);
         }
     }
 }
