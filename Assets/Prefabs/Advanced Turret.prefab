@@ -20913,7 +20913,7 @@ MonoBehaviour:
   pastObstacleDelay: 0.2
   lookDuration: 3
   turretHead: {fileID: 3357877380030404501}
-  lookPoint: {fileID: 2152748469842456102}
+  lookPoint: {fileID: 4406371737021728729}
 --- !u!114 &3973989877201269475
 MonoBehaviour:
   m_ObjectHideFlags: 0
