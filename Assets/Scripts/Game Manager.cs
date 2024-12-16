@@ -21,6 +21,7 @@ public class GameManager
     private static ViewPane playerPane;
     private static SimpleHealth playerHealth;
     private static Dictionary<DialogSource, Sprite> characterHeads = new Dictionary<DialogSource, Sprite>();
+    private static int currentLevelCollectionCount = 0;
     public static void KillPlayer(){
         PauseInput = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -60,10 +61,15 @@ public class GameManager
         if (playerPane == null) return false;
         return playerPane.PaneVisibleToPoint(position);
     }
-    public static int CollectWorkBot() => WorkbotsCollectedCount++;
+    public static int CollectWorkBot() {
+        WorkbotsCollectedCount++;
+        currentLevelCollectionCount++;
+    } 
     public static void MakePlayerTakeDamage(float damage) => playerHealth.DealDamage(damage);
-    public static void ChangeScene(string sceneName){
+    public static void ChangeScene(string sceneName, bool resetSceneCollectedCount = false){
         SceneManager.LoadSceneAsync(sceneName);
+        if (resetSceneCollectedCount) WorkbotsCollectedCount - currentLevelCollectionCount;
+        currentLevelCollectionCount = 0;
     }
-    public static void RestartScene() => ChangeScene(SceneManager.GetActiveScene().name);
+    public static void RestartScene() => ChangeScene(SceneManager.GetActiveScene().name, true);
 }
