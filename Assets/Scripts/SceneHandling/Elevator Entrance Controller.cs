@@ -13,14 +13,18 @@ public class ElevatorEntranceController : MonoBehaviour
     [SerializeField] private AudioClip levelBegin1;
     [SerializeField] private AudioClip levelBegin2;
 
-    [Header("Start Dialog")]
+    [Header("Dialog and Scenes")]
     [SerializeField] private DialogManager entranceDialog;
     [SerializeField] private DialogManager lockedDialog;
+    [SerializeField] private string nextSceneName;
+
 
     private AudioSource audio;
+    private bool locked = true;
 
     void Awake(){
         audio = GetComponent<AudioSource>();
+        GameManager.CurrentElevatorEntrance = this;
         entranceDialog.Reset();
         lockedDialog.Reset();
     }
@@ -59,8 +63,11 @@ public class ElevatorEntranceController : MonoBehaviour
         audio.PlayOneShot(levelBegin2);
     }
     public void LeaveLevel(){
-        lockedDialog.Reset();
-        GameManager.CurrentDialogGUI.StartDialog(lockedDialog);
+        if (locked){
+            lockedDialog.Reset();
+            GameManager.CurrentDialogGUI.StartDialog(lockedDialog);
+        }
+        else GameManager.ChangeScene(nextSceneName);
     }
-
+    public void Unlock() => locked = false;
 }
