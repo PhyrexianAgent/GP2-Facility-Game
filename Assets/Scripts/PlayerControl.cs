@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
         }
         else if (anim.GetInteger("Speed") > 0) anim.SetInteger("Speed", 0);
         #if UNITY_EDITOR
-        if (Input.GetKeyUp(KeyCode.K)) EditorApplication.isPlaying = false;
+        if (Input.GetKeyUp(KeyCode.K)) GameManager.PlayerWon();//EditorApplication.isPlaying = false;
         #endif
 
     }

@@ -14,6 +14,7 @@ public class GameManager
     public static GameDialogController CurrentDialogGUI;
     public static PlayerDeadController PlayerDeadGUI;
     public static ElevatorEntranceController CurrentElevatorEntrance;
+    public static PlayerWonController PlayerWonGUI;
     public static Transform PlayerInterface;
     public static SceneFader CurrentSceneFader;
     public static int WorkbotsCollectedCount {get; private set;}
@@ -22,14 +23,7 @@ public class GameManager
     private static SimpleHealth playerHealth;
     private static Dictionary<DialogSource, Sprite> characterHeads = new Dictionary<DialogSource, Sprite>();
     private static int currentLevelCollectionCount = 0;
-    public static void KillPlayer(){
-        PauseInput = true;
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-        MonoBehaviour.Destroy(playerTrans.GetComponent<PlayerControl>());
-        MonoBehaviour.Destroy(playerTrans.GetComponent<CharacterController>());
-        PlayerDeadGUI.PlayerDied();
-    }
+    
     public static void SetPlayer(Transform playerTransform) => playerTrans = playerTransform;
     public static Transform GetPlayerTransform() => playerTrans;
     public static void SetPlayerHealth(SimpleHealth health) => playerHealth = health;
@@ -61,15 +55,31 @@ public class GameManager
         if (playerPane == null) return false;
         return playerPane.PaneVisibleToPoint(position);
     }
-    public static int CollectWorkBot() {
+    public static void CollectWorkBot() {
         WorkbotsCollectedCount++;
         currentLevelCollectionCount++;
     } 
     public static void MakePlayerTakeDamage(float damage) => playerHealth.DealDamage(damage);
     public static void ChangeScene(string sceneName, bool resetSceneCollectedCount = false){
         SceneManager.LoadSceneAsync(sceneName);
-        if (resetSceneCollectedCount) WorkbotsCollectedCount - currentLevelCollectionCount;
+        if (resetSceneCollectedCount) WorkbotsCollectedCount -= currentLevelCollectionCount;
         currentLevelCollectionCount = 0;
     }
     public static void RestartScene() => ChangeScene(SceneManager.GetActiveScene().name, true);
+    public static void PlayerWon(){
+        EndPlayerControl();
+        PlayerWonGUI.PlayerWon();
+        WorkbotsCollectedCount = 0;
+    }
+    public static void KillPlayer(){
+        EndPlayerControl();
+        PlayerDeadGUI.PlayerDied();
+    }
+    private static void EndPlayerControl(){
+        PauseInput = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        MonoBehaviour.Destroy(playerTrans.GetComponent<PlayerControl>());
+        MonoBehaviour.Destroy(playerTrans.GetComponent<CharacterController>());
+    }
 }
