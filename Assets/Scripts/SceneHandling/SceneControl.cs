@@ -7,7 +7,6 @@ public class SceneControl : MonoBehaviour
 {
     [SerializeField] private float fadeDuration;
     private SceneFader sceneFade;
-    [SerializeField] AudioSource SFX;
 
     [SerializeField] private AudioClip levelEnd1;
     [SerializeField] private AudioClip levelEnd2;
@@ -63,26 +62,6 @@ public class SceneControl : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return sceneFade.fadeOut(fadeDuration);
         yield return SceneManager.LoadSceneAsync(sceneIndex);
-    }
-    //purely for test purposes
-    private void Update()
-    {
-        if (Input.GetKey("1"))
-        {
-            loadScene("Level 1");
-        }
-        else if (Input.GetKey("2"))
-        {
-            loadScene("Level 2");
-        }
-        else if (Input.GetKey("3"))
-        {
-            loadScene("Level 3");
-        }
-        else if (Input.GetKey("m"))
-        {
-            loadScene("MainMenu");
-        }
     }
 
 

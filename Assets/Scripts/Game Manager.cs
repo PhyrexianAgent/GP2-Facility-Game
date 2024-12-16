@@ -12,6 +12,7 @@ public class GameManager
     public static bool PauseInput;
     public static GameDialogController CurrentDialogGUI;
     public static Transform PlayerInterface;
+    public static SceneFader CurrentSceneFader;
     public static int WorkbotsCollectedCount {get; private set;}
     private static Transform playerTrans;
     private static ViewPane playerPane;

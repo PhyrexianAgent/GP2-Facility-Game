@@ -3,7 +3,12 @@ guid: ba6d1f0ddb8a7564685cb0e49770e850
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SFX: {instanceID: 0}
+  - levelEnd1: {fileID: 8300000, guid: 07d59898982294f63ade64db833391b4, type: 3}
+  - levelEnd2: {fileID: 8300000, guid: b333e18a25f794fd4855e2a203320262, type: 3}
+  - levelBegin1: {fileID: 8300000, guid: 8a192f4421b84408da98ab8f393611e4, type: 3}
+  - levelBegin2: {fileID: 8300000, guid: 07d59898982294f63ade64db833391b4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

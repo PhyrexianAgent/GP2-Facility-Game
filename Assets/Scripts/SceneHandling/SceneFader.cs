@@ -10,6 +10,7 @@ public class SceneFader : MonoBehaviour
     private void Awake()
     {
         sceneFader = GetComponent<Image>();
+        GameManager.CurrentSceneFader = this;
     }
 
     public IEnumerator fadeIn(float duration)
