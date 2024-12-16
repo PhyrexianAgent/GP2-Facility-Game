@@ -13,8 +13,6 @@ public class PlayerDeadController : MonoBehaviour
     }
     void Start()
     {
-        quitButton.onClick.AddListener(QuitPressed);
-        retryButton.onClick.AddListener(RetryPressed);
     }
 
     // Update is called once per frame
