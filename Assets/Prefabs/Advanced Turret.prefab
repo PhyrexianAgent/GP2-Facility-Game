@@ -20964,7 +20964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleController: {fileID: 4318503174156480059}
-  damagePerProjectile: 1
+  damagePerProjectile: 6
 --- !u!1 &7613390973896525629
 GameObject:
   m_ObjectHideFlags: 0

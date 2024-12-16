@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleController: {fileID: 7538280116178514571}
-  damagePerProjectile: 3
+  damagePerProjectile: 8
 --- !u!1 &437909512517046094
 GameObject:
   m_ObjectHideFlags: 0
@@ -10567,7 +10567,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7538280116178514571}
   serializedVersion: 8
-  lengthInSec: 0.4
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
