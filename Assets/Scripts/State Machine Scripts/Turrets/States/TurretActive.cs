@@ -19,6 +19,9 @@ public class TurretActive : State
     }
     public override void Update(){
         updateRotationFunc();
-        if (anim != null) anim.SetTrigger("Spin Up");
+        if (anim != null){
+            Debug.Log("spin up");
+            anim.Play("Spin Up");
+        } 
     }
 }

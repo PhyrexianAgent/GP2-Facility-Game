@@ -39,7 +39,9 @@ public class CameraLooking : State
         looking = false;
         currentLookIndex = GetNearestLookPointIndex();
         if (anim != null){
+            //Debug.Log("spinning down");
             anim.Play("Spin Down");
+            script.StartCoroutine(ForcedSpinDownDelayed());
             agent.GetComponent<AdvancedTurret>().ActiveFromCamera = false;
         } 
         if (basicTurrets != null)
@@ -53,6 +55,10 @@ public class CameraLooking : State
     }
     public override void Update(){
         if (!looking && lookPoints.Length > 0) RotateToCurrentPoint();
+    }
+    private IEnumerator ForcedSpinDownDelayed(){
+        yield return new WaitForSeconds(1f);
+        anim.Play("Spin Down");
     }
     private void RotateToCurrentPoint(){ // Will be kept like this so old dir can be collected
         Vector3 diff = lookPoints[currentLookIndex].position - cameraHead.position;

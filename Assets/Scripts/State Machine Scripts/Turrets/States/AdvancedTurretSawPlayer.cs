@@ -23,7 +23,10 @@ public class AdvancedTurretSawPlayer : State
     }
     public override void OnEnter()
     {
-        if (anim != null) anim.SetTrigger("Spin Up");
+        if (anim != null){
+            //Debug.Log("spinning up");
+            anim.SetTrigger("Spin Up");
+        } 
 
         if (!_audio.isPlaying)
         {

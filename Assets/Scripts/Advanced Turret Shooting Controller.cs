@@ -5,7 +5,7 @@ using UnityEngine;
 public class AdvancedTurretShootingController : MonoBehaviour
 {
     [SerializeField] private float spinSpeed;
-    [SerializeField] private float speedToShoot = 1500;
+    [SerializeField] private float speedToShoot = 0;
     [SerializeField] private GameObject turretGun;
     [SerializeField] private Transform barrelPoint;
     private TurretDamageController damageController;

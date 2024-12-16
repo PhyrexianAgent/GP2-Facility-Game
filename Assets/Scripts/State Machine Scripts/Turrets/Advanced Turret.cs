@@ -42,4 +42,5 @@ public class AdvancedTurret : StateMachine
     }
     private GameObject GetObstacle() => GameManager.GetObjectBetweenPlayerAndTarget(controllingCamera.transform);
     public void SetControllingCamera(GameObject camera) => controllingCamera = camera;
+    public void Test() => Debug.Log("called");
 }
