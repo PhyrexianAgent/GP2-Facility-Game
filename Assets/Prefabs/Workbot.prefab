@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 2
-  lookDuration: 5
+  lookDuration: 2
   fleePoint: {fileID: 0}
   visionCone: {fileID: 8276466121747037743}
-  fleeSpeed: 8
+  fleeSpeed: 15
   idleClip: {fileID: 8300000, guid: 524c9c0005b8f8f4bb25d26a678f9248, type: 3}
   fleeClip: {fileID: 8300000, guid: fe93e490a3098834b925bfada318c433, type: 3}
 --- !u!114 &5367248762875296430
@@ -189,7 +189,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 8
+  MaxDistance: 44.086514
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
