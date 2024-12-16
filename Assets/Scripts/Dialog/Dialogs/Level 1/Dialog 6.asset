@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 6
   m_EditorClassIdentifier: 
-  Text: I am not sure why they seek these out to be honest but they seem really interested
-    in any you collect.
+  Text: I am not sure why they seek these out to be honest, but they seem really
+    interested in any you collect.
   Source: 0
   TriggerKillAnimation: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 10
   m_EditorClassIdentifier: 
-  Text: Best of luck to you. I will update you when you procede to the next floor.
+  Text: Best of luck to you. I will update you when you get to the next floor.
   Source: 0
   TriggerKillAnimation: 0

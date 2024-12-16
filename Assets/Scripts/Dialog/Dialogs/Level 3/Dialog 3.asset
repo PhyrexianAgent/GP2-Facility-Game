@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 3
   m_EditorClassIdentifier: 
-  Text: It is massive and packs a massive punch.
+  Text: It is large, loud, and extremely dangerous.
   Source: 0
   TriggerKillAnimation: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 1
   m_EditorClassIdentifier: 
-  Text: This is the final floor, and likely the most dangerous.
+  Text: You are nearing the finish line on this final floor.
   Source: 0
   TriggerKillAnimation: 0

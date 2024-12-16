@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 4
   m_EditorClassIdentifier: 
-  Text: Keep out of its sight, plant the explosives, and get out.
+  Text: Keep out of its sight, activate the bombs, and get out.
   Source: 0
   TriggerKillAnimation: 0

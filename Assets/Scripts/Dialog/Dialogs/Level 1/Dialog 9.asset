@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 9
   m_EditorClassIdentifier: 
-  Text: This panel will override the lock on the elevator you came here from.
+  Text: This panel will override the access lock for that floor, which allows you
+    to descend further down.
   Source: 0
   TriggerKillAnimation: 0

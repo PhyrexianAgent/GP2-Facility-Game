@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 1
   m_EditorClassIdentifier: 
-  Text: Good you made it in. I am mission control, I will be helping to guide you
-    on your objective.
+  Text: Good you made it in. I am mission control, I will be helping you complete
+    your objective.
   Source: 0
   TriggerKillAnimation: 0

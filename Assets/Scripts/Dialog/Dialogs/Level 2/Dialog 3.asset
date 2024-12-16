@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 3
   m_EditorClassIdentifier: 
-  Text: They use laser guidance and are quite deadly.
+  Text: They can detect you without the aid of a camera and can kill you faster than
+    the basic ones you have found so far.
   Source: 0
   TriggerKillAnimation: 0

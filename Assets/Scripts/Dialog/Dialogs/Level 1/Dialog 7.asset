@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c4916cb10cf5a8a905fa7929906ae1, type: 3}
   m_Name: Dialog 7
   m_EditorClassIdentifier: 
-  Text: They can hear you if you are too loud. They will also flee from any perceived
-    threat.
+  Text: They can hear you if you are too loud, and will flee from any perceived threat.
   Source: 0
   TriggerKillAnimation: 0
