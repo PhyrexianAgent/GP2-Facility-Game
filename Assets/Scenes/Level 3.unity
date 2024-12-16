@@ -18184,22 +18184,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8458251318419367267, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-      propertyPath: gunSound
-      value: 
-      objectReference: {fileID: 1241331064}
-    - target: {fileID: 8458251318419367267, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-      propertyPath: passiveSound
-      value: 
-      objectReference: {fileID: 1241331066}
-    - target: {fileID: 8458251318419367267, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-      propertyPath: footEchoSound
-      value: 
-      objectReference: {fileID: 1241331063}
-    - target: {fileID: 8458251318419367267, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-      propertyPath: footStepSound
-      value: 
-      objectReference: {fileID: 1241331065}
-    - target: {fileID: 8458251318419367267, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 499812133}
@@ -18256,26 +18240,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
---- !u!82 &1241331063 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 504313261565774963, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-  m_PrefabInstance: {fileID: 1241331062}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1241331064 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2364089714762063243, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-  m_PrefabInstance: {fileID: 1241331062}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1241331065 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4702407423305474971, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-  m_PrefabInstance: {fileID: 1241331062}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1241331066 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2866991111693912567, guid: bff0e607272183b4e8149f624c46fb01, type: 3}
-  m_PrefabInstance: {fileID: 1241331062}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1247814476
 PrefabInstance:
   m_ObjectHideFlags: 0
