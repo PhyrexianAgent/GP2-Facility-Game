@@ -39,7 +39,6 @@ public class CameraLooking : State
         looking = false;
         currentLookIndex = GetNearestLookPointIndex();
         if (anim != null){
-            //Debug.Log("spinning down");
             anim.Play("Spin Down");
             script.StartCoroutine(ForcedSpinDownDelayed());
             agent.GetComponent<AdvancedTurret>().ActiveFromCamera = false;

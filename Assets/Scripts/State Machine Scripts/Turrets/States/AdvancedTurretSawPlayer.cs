@@ -24,7 +24,6 @@ public class AdvancedTurretSawPlayer : State
     public override void OnEnter()
     {
         if (anim != null){
-            //Debug.Log("spinning up");
             anim.SetTrigger("Spin Up");
         } 
 

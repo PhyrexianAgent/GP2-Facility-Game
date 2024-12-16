@@ -40,7 +40,6 @@ public class AdvancedTurret : StateMachine
         turretHead.transform.rotation = GameManager.GetRotationToPointOverTime(turretHead.transform, CurrentTarget, alertedTurnRate);
         return true;
     }
-    private GameObject GetObstacle() => GameManager.GetObjectBetweenPlayerAndTarget(controllingCamera.transform);
     public void SetControllingCamera(GameObject camera) => controllingCamera = camera;
     public void Test() => Debug.Log("called");
 }
