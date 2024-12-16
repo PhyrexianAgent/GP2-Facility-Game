@@ -25,6 +25,7 @@ public class Fleeing : State
 
         audioSource.loop = false;
         audioSource.clip = audioClip;
+        audioSource.volume = 0.7f;
         audioSource.Play();
     }
     public override void Update(){

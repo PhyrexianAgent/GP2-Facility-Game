@@ -30,6 +30,7 @@ public class LookingTowardsSound : EventListenerState<Sound>
 
         audioSource.loop = true;
         audioSource.clip = audioClip;
+        audioSource.volume = 0.02f;
         audioSource.Play();
     }
     public override void Update(){

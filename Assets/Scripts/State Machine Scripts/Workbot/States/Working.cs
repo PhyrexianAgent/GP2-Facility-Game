@@ -22,8 +22,9 @@ public class Working : EventListenerState<Sound>
         turningToStart = agent.transform.rotation != startRotation;
 
         audioSource.loop = true;
-        //audioSource.clip = audioClip;
-        //audioSource.Play();
+        audioSource.volume = 0.1f;
+        audioSource.clip = audioClip;
+        audioSource.Play();
 
         //Debug.Log(turningToStart);
     }
