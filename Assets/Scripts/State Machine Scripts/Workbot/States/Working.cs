@@ -23,8 +23,8 @@ public class Working : EventListenerState<Sound>
 
         audioSource.loop = true;
         audioSource.volume = 0.1f;
-        audioSource.clip = audioClip;
-        audioSource.Play();
+        if (audioSource.clip != audioClip) audioSource.clip = audioClip;
+        if (!audioSource.isPlaying) audioSource.Play();
 
         //Debug.Log(turningToStart);
     }
@@ -36,7 +36,7 @@ public class Working : EventListenerState<Sound>
 
     public override void OnExit()
     {
-        audioSource.Stop();
+        //audioSource.Stop();
     }
 
     protected override void EventCallMethod(Sound sound){

@@ -29,9 +29,9 @@ public class LookingTowardsSound : EventListenerState<Sound>
         DoneLooking = false;
 
         audioSource.loop = true;
-        audioSource.clip = audioClip;
+        if (audioSource.clip != audioClip) audioSource.clip = audioClip;
         audioSource.volume = 0.02f;
-        audioSource.Play();
+        if (!audioSource.isPlaying) audioSource.Play();
     }
     public override void Update(){
         if (!DoneLooking && !lookingAtPoint) LookToLookPoint();
@@ -39,7 +39,7 @@ public class LookingTowardsSound : EventListenerState<Sound>
 
     public override void OnExit()
     {
-        audioSource.Stop();
+        //audioSource.Stop();
     }
 
     protected override void EventCallMethod(Sound sound){

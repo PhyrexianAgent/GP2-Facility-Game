@@ -23,6 +23,7 @@ public class Fleeing : State
         navAgent.SetDestination(fleePoint);
         navAgent.speed = fleeSpeed;
 
+        if (audioSource.isPlaying) audioSource.Stop(); 
         audioSource.loop = false;
         audioSource.clip = audioClip;
         audioSource.volume = 0.7f;
