@@ -408,13 +408,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 803282866165236867, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 818278877233653927, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 1424035230789167668, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424035230789167668, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ElevatorEntranceController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912569649692991888, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
+      propertyPath: nextSceneName
+      value: Level 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3650303353296306873, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650303353296306873, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650303353296306873, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ElevatorEntranceController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6981554706098539637, guid: e70a2beae5e026b41a1b064dec0cde9a, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

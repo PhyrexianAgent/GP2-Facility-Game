@@ -24,13 +24,24 @@ public class ElevatorEntranceController : MonoBehaviour
 
     void Awake(){
         audio = GetComponent<AudioSource>();
-        GameManager.CurrentElevatorEntrance = this;
-        entranceDialog.Reset();
-        lockedDialog.Reset();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            GameManager.CurrentElevatorEntrance = this;
+            entranceDialog.Reset();
+            lockedDialog.Reset();
+        }
     }
     void Start(){
         StartCoroutine(PlayStartSounds());
-        StartCoroutine(StartLevelDialog());
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            StartCoroutine(StartLevelDialog());
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private IEnumerator StartLevelDialog(){
@@ -70,4 +81,20 @@ public class ElevatorEntranceController : MonoBehaviour
         else GameManager.ChangeScene(nextSceneName);
     }
     public void Unlock() => locked = false;
+
+    public void LoadScene(int index)
+    {
+        if (index == -1)
+        {
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
+        }
+        else
+        {
+            SceneManager.LoadScene(index);
+        }
+    }
 }
