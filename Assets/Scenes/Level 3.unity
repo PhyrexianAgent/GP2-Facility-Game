@@ -21258,14 +21258,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2706170118700806612, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
-      propertyPath: standHeight
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706170118700806612, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
-      propertyPath: sneakCrouchHeight
-      value: 0.33
-      objectReference: {fileID: 0}
     - target: {fileID: 7655961659707875669, guid: 3cfbc4fb57d019923bcf78f0e43969f0, type: 3}
       propertyPath: m_Name
       value: Player FP
