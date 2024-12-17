@@ -6,10 +6,15 @@ using System;
 
 public class KeypadController : MonoBehaviour
 {
+    private static int activatedKeypadCount = 0;
     [SerializeField, Min(0)] private float keyPressDelay = 0.3f;
+    [SerializeField] private int keypadsNeededToContinue = 1;
+    [SerializeField] private GameObject doorObject;
+    [SerializeField] private AudioSource doorAudioController;
     private Keypad keypadScript; 
     void Awake()
     {
+        activatedKeypadCount = 0;
         keypadScript = GetComponent<Keypad>();
     }
 
@@ -26,6 +31,11 @@ public class KeypadController : MonoBehaviour
         }
         keypadScript.AddInput("enter");
         GameManager.PauseInput = false;
-        GameManager.CurrentElevatorEntrance.Unlock();
+        activatedKeypadCount++;
+        if (activatedKeypadCount == keypadsNeededToContinue){
+            GameManager.CurrentElevatorEntrance.Unlock();
+            doorObject.SetActive(false);
+            doorAudioController.Play();
+        } 
     }
 }

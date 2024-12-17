@@ -10,6 +10,7 @@ public class SimpleHealth : MonoBehaviour
     //public float visualHealth = 60f;
     public float regenRate = 0.1f;
     [SerializeField, Min(0)] private float regenDelay = 0.3f;
+    [SerializeField] private bool canDie = true;
     private bool died = false;
     private Coroutine regenWait;
     private float health;
@@ -51,7 +52,7 @@ public class SimpleHealth : MonoBehaviour
         if (!died){
             health -= damage;
             RefreshRegenDelay();
-            died = health <= 0;
+            died = health <= 0 && canDie;
             if (died) GameManager.KillPlayer();
         }
     }

@@ -38,10 +38,6 @@ namespace NavKeypad
         [SerializeField] private TMP_Text keypadDisplayText;
         [SerializeField] private AudioSource audioSource;
 
-        [Header("Door Properties")]
-        [SerializeField] public GameObject door;
-        [SerializeField] public AudioSource doorAudioSource;
-
 
         private string currentInput;
         private bool displayingResult = false;
@@ -129,8 +125,6 @@ namespace NavKeypad
             onAccessGranted?.Invoke();
             panelMesh.material.SetVector("_EmissionColor", screenGrantedColor * screenIntensity);
             audioSource.PlayOneShot(accessGrantedSfx);
-            doorAudioSource.PlayOneShot(doorAudioSource.clip);
-            door.SetActive(false);
         }
         public string GetCombo() => keypadCombo.ToString();
     }
